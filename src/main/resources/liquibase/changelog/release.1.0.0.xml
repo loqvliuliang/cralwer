@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Copyright (c) 2017. Shanghai Zhenhui Information Technology Co,. ltd.
+  ~ All rights are reserved.
+  -->
+
+<databaseChangeLog
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="autoIncrement" value="true" dbms="mysql,h2,postgresql,oracle"/>
+    <changeSet author="liang.liu" id="201709131902001">
+        <createTable tableName="role" remarks="角色表">
+            <column name="id" type="bigint" remarks="角色id"/>
+            <column name="role" type="varchar(30)" remarks="角色描述"/>
+            <column name="user_id" type="bigint" remarks="用户id"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="201709131916001" author="liang.liu">
+        <createTable tableName="user" remarks="用户表">
+            <column name="id" type="bigint" remarks="id">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_name" type="varchar(30)" remarks="用户名">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="varchar(30)" remarks="密码">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="201709141105001" author="liang.liu">
+        <createTable tableName="user_role" remarks="用户-角色关系表">
+            <column name="id" type="bigint" remarks="用户角色关系表id" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="bigint" remarks="用户id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="role_id" type="bigint" remarks="角色id">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <!--<changeSet id="2222" author="liuliang">-->
+        <!--<modifyDataType tableName="user_role" columnName="id" newDataType="int"></modifyDataType>-->
+    <!--</changeSet>-->
+
+
+</databaseChangeLog>

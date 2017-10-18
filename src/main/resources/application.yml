@@ -1,0 +1,46 @@
+server:
+  port: 2222
+
+liquibase:
+  change-log: classpath:liquibase/master.xml
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3308/crawler
+    password: root
+    username: root
+    driver-class-name:  com.mysql.jdbc.Driver
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+    date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
+  redis:
+    host: localhost
+    port: 6379
+    pool:
+      max-active: 8
+      min-idle: 0
+      max-idle: 8
+      max-wait: -1
+mybatis-plus:
+  mapper-locations: com/example/demo/mapper/*Mapper.xml
+  type-aliases-package: com.example.demo.domain
+  type-handlers-package: com.example.demo.mapper.typehandler
+  global-config:
+    #刷新mapper 调试神器
+    refresh-mapper: true
+
+mapper:
+  not-empty: false
+
+
+
+
+#日志配置
+
+logging:
+  file: d:\logfile\my.log
+  level:
+    com:
+      example:
+        demo: debug
