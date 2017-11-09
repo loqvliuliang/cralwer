@@ -19,7 +19,9 @@ public class UserService extends ServiceImpl<UserMapper,User> {
 
     public boolean login(User user){
         EntityWrapper<User> wrapper = new EntityWrapper<>();
-        wrapper.eq("userName",user.getUsername()).and().eq("password",user.getPassword());
+        wrapper.eq("user_name",user.getUsername());
+        String u = user.getUsername();
+        wrapper.eq("password",user.getPassword());
         if(userMapper.selectList(wrapper).size()!=0){
             return true;
         }

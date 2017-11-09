@@ -16,10 +16,15 @@ public class userController {
         this.userService = userService;
     }
 
-    @PostMapping("/login.do")
+    @PostMapping("/login")
     public ResponseEntity<Boolean> login(@RequestBody User user){
         System.out.println("11");
         return ResponseEntity.ok(userService.login(user));
+    }
+
+    @GetMapping("/text/ll")
+    public ResponseEntity<Boolean> text1(){
+        return ResponseEntity.ok(true);
     }
 
 }
