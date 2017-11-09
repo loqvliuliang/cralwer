@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.domain.User;
 import com.example.demo.service.UserService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -22,6 +23,7 @@ public class userController {
         return ResponseEntity.ok(userService.login(user));
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("/text/ll")
     public ResponseEntity<Boolean> text1(){
         return ResponseEntity.ok(true);

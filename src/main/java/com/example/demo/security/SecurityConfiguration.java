@@ -2,7 +2,6 @@ package com.example.demo.security;
 
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.example.demo.domain.Role;
 import com.example.demo.domain.User;
 import com.example.demo.domain.UserRole;
 import com.example.demo.mapper.RoleMapper;
@@ -20,17 +19,15 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-/**
- * Created by xujingfeng on 2017/8/7.
- */
 @Configuration
 @EnableWebSecurity
+//开启权限认证
+@EnableGlobalMethodSecurity(prePostEnabled = false)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
@@ -45,6 +42,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService());
     }
+
+
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//        auth.userDetailsService(userDetailsService());
+//    }
+
 
     @Override
     @Bean
@@ -93,4 +97,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/oauth/*").permitAll();
         // @formatter:on
     }
+
+
 }

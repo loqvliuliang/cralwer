@@ -18,9 +18,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
-/**
- * Created by xujingfeng on 2017/8/7.
- */
+
 @Configuration
 public class OAuth2ServerConfig {
 
@@ -49,7 +47,8 @@ public class OAuth2ServerConfig {
                     .and()
                     .authorizeRequests()
 //                    .antMatchers("/product/**").access("#oauth2.hasScope('select') and hasRole('ROLE_USER')")
-                    .antMatchers("/text/**").authenticated();//配置text访问控制，必须认证过后才可以访问
+                    .antMatchers("/text/**").authenticated()//配置text访问控制，必须认证过后才可以访问
+                    ;
             // @formatter:on
         }
     }
