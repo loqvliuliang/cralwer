@@ -23,7 +23,7 @@ public class userController {
         return ResponseEntity.ok(userService.login(user));
     }
 
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/text/ll")
     public ResponseEntity<Boolean> text1(){
         return ResponseEntity.ok(true);

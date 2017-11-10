@@ -7,6 +7,7 @@ import com.example.demo.domain.UserRole;
 import com.example.demo.mapper.RoleMapper;
 import com.example.demo.mapper.UserMapper;
 import com.example.demo.mapper.UserRoleMapper;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,6 +21,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,7 +29,7 @@ import java.util.List;
 @Configuration
 @EnableWebSecurity
 //开启权限认证
-@EnableGlobalMethodSecurity(prePostEnabled = false)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
@@ -66,7 +68,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     });
                     // 创建spring security安全用户
                     org.springframework.security.core.userdetails.User user = new org.springframework.security.core.userdetails.User(account.getUsername(), account.getPassword(),
-                            AuthorityUtils.createAuthorityList(roles.toString()));
+                            AuthorityUtils.createAuthorityList(StringUtils.strip(roles.toString(),"[]")));
                     return user;
                 } else {
                     throw new UsernameNotFoundException("用户[" + name + "]不存在");
