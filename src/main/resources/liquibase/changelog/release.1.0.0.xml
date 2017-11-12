@@ -48,6 +48,12 @@
     <!--<changeSet id="2222" author="liuliang">-->
         <!--<modifyDataType tableName="user_role" columnName="id" newDataType="int"></modifyDataType>-->
     <!--</changeSet>-->
+    <changeSet id="201711101025001" author="liang.liu">
+        <addColumn tableName="user">
+            <column name="mail" type="varchar(50)" remarks="邮箱"/>
+            <column name="phone" type="int" remarks="电话"/>
+        </addColumn>
+    </changeSet>
 
 
 </databaseChangeLog>

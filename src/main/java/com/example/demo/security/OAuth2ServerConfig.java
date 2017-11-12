@@ -48,6 +48,15 @@ public class OAuth2ServerConfig {
                     .authorizeRequests()
 //                    .antMatchers("/product/**").access("#oauth2.hasScope('select') and hasRole('ROLE_USER')")
                     .antMatchers("/text/**").authenticated()//配置text访问控制，必须认证过后才可以访问
+                    .and()
+                    .authorizeRequests()
+                    .antMatchers("/user/**").authenticated()//配置/user访问控制，必须要认证过才可访问
+                    .and()
+                    .authorizeRequests()
+                    .antMatchers("/login/**").authenticated()
+                    .and()
+                    .authorizeRequests()
+                    .antMatchers("/static/**").permitAll()
                     ;
             // @formatter:on
         }

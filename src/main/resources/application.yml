@@ -22,6 +22,17 @@ spring:
       min-idle: 0
       max-idle: 8
       max-wait: -1
+  mail:
+    host: smtp.qq.com
+    username: 939513800@qq.com
+    password: hnjwcejddjhwbeac
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
 mybatis-plus:
   mapper-locations: com/example/demo/mapper/*Mapper.xml
   type-aliases-package: com.example.demo.domain
@@ -36,9 +47,6 @@ security:
   oauth2:
     resource:
       filter-order: 3
-
-
-
 
 logging:
   file: d:\logfile\my.log
