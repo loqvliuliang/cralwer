@@ -18,7 +18,7 @@ public class userController {
 
     @PostMapping("/login.do")
     public ResponseEntity<Boolean> login(@RequestBody User user){
-        System.out.println("11");
+        System.out.println(user.toString());
         return ResponseEntity.ok(userService.login(user));
     }
 

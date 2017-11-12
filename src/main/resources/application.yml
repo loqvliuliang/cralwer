@@ -27,7 +27,6 @@ mybatis-plus:
   type-aliases-package: com.example.demo.domain
   type-handlers-package: com.example.demo.mapper.typehandler
   global-config:
-    #刷新mapper 调试神器
     refresh-mapper: true
 
 mapper:
@@ -36,7 +35,7 @@ mapper:
 
 
 
-#日志配置
+
 
 logging:
   file: d:\logfile\my.log

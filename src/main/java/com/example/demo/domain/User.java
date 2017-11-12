@@ -17,7 +17,7 @@ public class User implements UserDetails {
     @TableField("id")
     private Long id;
     @TableField("user_name")
-    private String userName;
+    private String username;
     @TableField("password")
     private String password;
 
@@ -27,7 +27,7 @@ public class User implements UserDetails {
 
     public User(User user) {
         this.id = user.getId();
-        this.userName = user.getUsername();
+        this.username = user.getUsername();
         this.password =user.getPassword();
     }
 
