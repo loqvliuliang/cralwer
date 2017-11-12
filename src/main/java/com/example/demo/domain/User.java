@@ -20,7 +20,7 @@ public class User implements UserDetails {
     @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
     @TableField("user_name")
-    private String username;
+    private String userName;
     @TableField("password")
     private String password;
     private String mail;
@@ -33,8 +33,10 @@ public class User implements UserDetails {
 
 
     public User(User user) {
-        this.id = user.getId();
-        this.username = user.getUsername();
+        this.id
+
+                = user.getId();
+        this.userName = user.getUsername();
         this.password =user.getPassword();
     }
 
