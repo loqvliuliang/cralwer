@@ -12,12 +12,16 @@ import com.example.demo.utils.MessageUtil;
 import com.example.demo.utils.ResponseCode;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.cache.RedisCache;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
+import javax.xml.bind.ValidationException;
 import java.util.Random;
 
 /**
@@ -26,7 +30,11 @@ import java.util.Random;
 @Service
 public class UserService extends ServiceImpl<UserMapper,User> {
     private final  UserMapper userMapper;
-    private RedisCache redisCache;
+
+    @Autowired
+    RedisService redisService;
+
+
 
     public UserService(UserMapper userMapper) {
         this.userMapper = userMapper;
@@ -49,9 +57,11 @@ public class UserService extends ServiceImpl<UserMapper,User> {
     public User insertOrUpdateUser(User user){
         if(user.getId()==null){//新增
             checkUser(user);
-//            if(StringUtils.isNotEmpty(user.getMail())){
-//                MailUtil.AuthMail(user.getMail());
-//            }
+
+             if(!AuthMailCode(user.getMail(),user.getAuthCode())){
+                 throw new RuntimeException("邮箱验证码不正确");
+             }
+
             userMapper.insert(user);
             return userMapper.selectById(user);
 
@@ -66,7 +76,7 @@ public class UserService extends ServiceImpl<UserMapper,User> {
         if(StringUtils.isNotEmpty(mail)){
             String authMail= MailUtil.AuthMail(mail);
             //将验证码存入Reids缓存
-            redisCache.put(mail,authMail);
+            redisService.setStr(mail,authMail);
             return authMail;
         }else {
             throw new BizException(ResponseCode.USER_MAIL_IS_EMPTY_60006);
@@ -75,7 +85,7 @@ public class UserService extends ServiceImpl<UserMapper,User> {
 
     //验证邮件验证码
     public Boolean AuthMailCode(String mail,String code){
-        if(code.equals(redisCache.get(mail))){
+        if(code.equals(redisService.getStr(mail))){
             return true;
         }
         return false;
