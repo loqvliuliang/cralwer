@@ -53,7 +53,7 @@ public class OAuth2ServerConfig {
                     .antMatchers("/user/**").authenticated()//配置/user访问控制，必须要认证过才可访问
                     .and()
                     .authorizeRequests()
-                    .antMatchers("/login/**").authenticated()
+                    .antMatchers("/login/**").permitAll()
                     .and()
                     .authorizeRequests()
                     .antMatchers("/static/**").permitAll()
