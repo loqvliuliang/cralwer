@@ -2,6 +2,8 @@ package com.example.demo.domain;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,15 +17,20 @@ import java.util.Collection;
 @Data
 public class User implements UserDetails {
     @TableField("id")
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
     @TableField("user_name")
     private String username;
     @TableField("password")
     private String password;
+    private String mail;
+    private Integer phone;
 
     public User(){
 
     }
+
+
 
     public User(User user) {
         this.id = user.getId();
@@ -38,7 +45,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return null;
+        return this.userName;
     }
 
     @Override
