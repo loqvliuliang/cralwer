@@ -36,6 +36,7 @@ public class User implements UserDetails {
         this.id = user.getId();
         this.userName = user.getUsername();
         this.password =user.getPassword();
+        
     }
 
     @Override
