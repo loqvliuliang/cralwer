@@ -66,11 +66,6 @@
 			<artifactId>druid</artifactId>
 			<version>1.0.29</version>
 		</dependency>
-		<dependency>
-			<groupId>com.baomidou</groupId>
-			<artifactId>mybatisplus-spring-boot-starter</artifactId>
-			<version>1.0.4</version>
-		</dependency>
 
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -129,6 +124,12 @@
 		<dependency>
 			<groupId>org.liquibase</groupId>
 			<artifactId>liquibase-core</artifactId>
+		</dependency>
+
+		<!-- Spring Security Oauth2 -->
+		<dependency>
+			<groupId>org.springframework.security.oauth</groupId>
+			<artifactId>spring-security-oauth2</artifactId>
 		</dependency>
 
 		<dependency>
