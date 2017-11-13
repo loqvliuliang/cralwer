@@ -34,7 +34,7 @@ public class MailUtil {
         simpleMailMessage.setFrom("939513800@qq.com");
         simpleMailMessage.setTo(mail);
         simpleMailMessage.setSubject(MessageUtil.LOGIN_MAIL);
-        simpleMailMessage.setText(i.toString());
+        simpleMailMessage.setText("欢迎注册亮亮购物商城！验证码： "+i.toString()+",请勿告诉任何人。此验证码将在30分钟后失效！");
         javaMailSender.send(simpleMailMessage);
         return i.toString();
     }

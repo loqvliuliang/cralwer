@@ -11,6 +11,7 @@ import com.example.demo.utils.MailUtil;
 import com.example.demo.utils.MessageUtil;
 import com.example.demo.utils.ResponseCode;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.context.annotation.Bean;
@@ -22,6 +23,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import javax.xml.bind.ValidationException;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -54,11 +56,12 @@ public class UserService extends ServiceImpl<UserMapper,User> {
 
 
     //新建或修改用户
-    public User insertOrUpdateUser(User user){
+    public User insertOrUpdateUser(UserDTO userDTO){
+        User user = new User();
+                BeanUtils.copyProperties(userDTO,user);
         if(user.getId()==null){//新增
             checkUser(user);
-
-             if(!AuthMailCode(user.getMail(),user.getAuthCode())){
+             if(!AuthMailCode(user.getMail(),userDTO.getAuthCode())){
                  throw new RuntimeException("邮箱验证码不正确");
              }
 
@@ -73,6 +76,11 @@ public class UserService extends ServiceImpl<UserMapper,User> {
 
     //发送邮件验证码
     public String AuthMail(String mail){
+        //首先看邮箱是否已经注册
+        List<User> list = userMapper.selectList(new EntityWrapper<User>().eq("mail",mail));
+        if(CollectionUtils.isNotEmpty(list)){
+            throw new BizException(ResponseCode.USER_MAIL_EXIT_60003);
+        }
         if(StringUtils.isNotEmpty(mail)){
             String authMail= MailUtil.AuthMail(mail);
             //将验证码存入Reids缓存

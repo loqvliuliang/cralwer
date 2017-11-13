@@ -25,7 +25,7 @@ public class User implements UserDetails {
     private String password;
     private String mail;
     private Integer phone;
-    private String authCode;
+
 
     public User(){
 

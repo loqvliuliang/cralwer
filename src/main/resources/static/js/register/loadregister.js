@@ -19,21 +19,12 @@ $(function(){
 		}
 		if(ok){//如果浏览器检查过关,则发送ajax请求
 			$.ajax({
-				url:path+"/authMail/insertOrUpdate",
-				type:"post",
-				data:{"userName":code,"password":psw1,"mail":email,"authCode":auth},
+				url:path+"/login/insertOrUpdate?userName="+code+"&password="+psw1+"&mail="+email+"&authCode="+auth,
+				type:"get",
+
 				dataType:"json",
 				success:function(result){
                     alert("注册成功!");
-					window.location.href="mylogin.html";
-					if(result.state==2){
-						//帐号被占用
-						$("#message").html("此用户名已被注册");								
-					}
-					if(result.state==1){
-						//未知异常
-						alert("未知异常");
-					}
 				},
 				error:function(){
 					alert("注册失败!");
@@ -50,17 +41,14 @@ $(function(){
 		}
 		if(ok){
         	$.ajax({
-				url:path+"/login/authMail",
-				type:"post",
-				data:{"mail":email},
+				url:path+"/login/authMail?mail="+email,
+				type:"get",
 				dataType:"json",
 				success:function(result){
-                    $("#message").html("已发送验证码!");
                     alert("发送成功!");
 				},
                 error:function (result) {
 					console.log(result);
-                    alert(result.responseText);
                     $("#message").html("验证码发送失败!");
                 }
 
