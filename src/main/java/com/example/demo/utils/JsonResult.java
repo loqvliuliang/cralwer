@@ -28,6 +28,11 @@ public class JsonResult implements Serializable{
 	 */
 	private Object data;
 
+	/***
+	 * 异常代码
+	 */
+	private String errorCode;
+
 	/**
 	 * 提示信息
 	 */
@@ -39,11 +44,12 @@ public class JsonResult implements Serializable{
 	}
 
 
-	public JsonResult(String state, Object data, String msg) {
+	public JsonResult(String state, Object data, String msg,String errorCode) {
 		super();
 		this.state = state;
 		this.data = data;
 		this.msg = msg;
+		this.errorCode = errorCode;
 	}
 
 	/**

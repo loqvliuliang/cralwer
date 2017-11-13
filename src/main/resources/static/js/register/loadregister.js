@@ -21,7 +21,6 @@ $(function(){
 			$.ajax({
 				url:path+"/login/insertOrUpdate?userName="+code+"&password="+psw1+"&mail="+email+"&authCode="+auth,
 				type:"get",
-
 				dataType:"json",
 				success:function(result){
                     alert("注册成功!");
@@ -44,7 +43,7 @@ $(function(){
 				url:path+"/login/authMail?mail="+email,
 				type:"get",
 				dataType:"json",
-				success:function(result){
+				success:function(){
                     alert("发送成功!");
 				},
                 error:function (result) {
