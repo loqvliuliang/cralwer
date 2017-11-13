@@ -33,6 +33,8 @@ spring:
           starttls:
             enable: true
             required: true
+  thymeleaf:
+    cache: false
 mybatis-plus:
   mapper-locations: com/example/demo/mapper/*Mapper.xml
   type-aliases-package: com.example.demo.domain
@@ -54,3 +56,4 @@ logging:
     com:
       example:
         demo: debug
+

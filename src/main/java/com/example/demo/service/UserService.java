@@ -62,7 +62,7 @@ public class UserService extends ServiceImpl<UserMapper,User> {
         if(user.getId()==null){//新增
             checkUser(user);
              if(!AuthMailCode(user.getMail(),userDTO.getAuthCode())){
-                 throw new RuntimeException("邮箱验证码不正确");
+                 throw new BizException(ResponseCode.MAIL_CODE_ERROR_60007,new Object[]{userDTO.getAuthCode()});
              }
 
             userMapper.insert(user);

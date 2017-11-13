@@ -14,6 +14,7 @@ public interface ResponseCode {
     String USER_PHONE_EXIT_60004="60004";//用户电话已经存在
     String USER_MAIL_WRONGFUL_60005="60005";//邮箱格式不合法
     String USER_MAIL_IS_EMPTY_60006="60006";//待认证邮箱为空
+    String MAIL_CODE_ERROR_60007="60007";//邮箱验证码不正确
 
 
 

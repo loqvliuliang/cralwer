@@ -1,48 +1,82 @@
 //加载完页面就运行此函数
 $(function(){
-		var ok = true;
-		$("#Register").click(function(){
-		var code = $("#usercode").val().trim();
-		var email= $("#email").val().trim();
-		var psw1 = $("#psw1").val().trim();
-		var psw2 = $("#psw2").val().trim();
-		if(code==""){
-			ok=false;
-			$("#message").html("用户名为空!");
-		}
-		if(psw1!=psw2){
-			ok=false;
-			$("#message").html("密码输入不一致!");
-		}
-		if(psw1.length<6){
-			ok=false;
-			$("#message").html("密码不得少于6位!");
-		}
-		if(ok){//如果浏览器检查过关,则发送ajax请求
-			$.ajax({
-				url:path+"/register.do",
-				type:"post",
-				data:{"code":code,"psw":psw1,"email":email},
-				dataType:"json",
-				success:function(result){
-					if(result.state==0){
-						//注册成功
-						window.location.href="mylogin.html";
-							
-					}
-					if(result.state==2){
-						//帐号被占用
-						$("#message").html("此用户名已被注册");								
-					}
-					if(result.state==1){
-						//未知异常
-						alert("未知异常");
-					}
-				},
-				error:function(){
-					alert("注册失败!");
-					}
-				});				
-		    }
-		});		
+    var ok = true;
+    $("#Register").click(function(){
+        var code = $("#usercode").val().trim();
+        var email= $("#email").val().trim();
+        var psw1 = $("#psw1").val().trim();
+        var auth = $("#auth").val().trim();
+        if(code==""){
+            ok=false;
+            $("#message").html("用户名为空!");
+        }
+        if(auth==""){
+            $("#message").html("请输入邮箱验证码!");
+        }
+        if(psw1.length<6){
+            ok=false;
+            $("#message").html("密码不得少于6位12!");
+        }
+        // if(ok){//如果浏览器检查过关,则发送ajax请求
+        //     $.ajax({
+        //         url:path+"/login/insertOrUpdate?userName="+code+"&password="+psw1+"&mail="+email+"&authCode="+auth,
+        //         type:"get",
+        //         dataType:"json",
+        //         success:function(result){
+        //             alert("注册成功!");
+        //         },
+        //         error:function(){
+        //             alert("注册失败!");
+        //         }
+        //     });
+        // }
+        var data = {
+            "userName":code,
+            "password":psw1,
+            "mail":email,
+            "authCode":auth
+        }
+        if(ok){
+            $.ajax({
+                url:path+"/login/insertOrUpdate",
+                type:"post",
+                data:JSON.stringify(data),
+                dataType:"json",
+                contentType:"application/json",
+                success:function () {
+                    alert("注册成功!");
+                },
+                error:function (result) {
+                    console.log(result);
+                }
+                
+            })
+
+
+        }
+    });
+
+    $("#authMail").click(function(){
+        var email= $("#email").val().trim();
+        if(email==""){
+            ok=false;
+            $("#message").html("请输入邮箱!");
+        }
+        if(ok){
+            $.ajax({
+                url:path+"/login/authMail?mail="+email,
+                type:"get",
+                dataType:"json",
+                success:function(){
+                    alert("发送成功!");
+                },
+                error:function (result) {
+                    console.log(result);
+                    $("#message").html("验证码发送失败!");
+                }
+
+            })
+        }
+    });
+
 });

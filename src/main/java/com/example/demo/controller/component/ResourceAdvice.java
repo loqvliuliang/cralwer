@@ -27,6 +27,7 @@ public class ResourceAdvice {
         jsonResult.setErrorCode(e.getCode());
         String message = exceptionService.getMessageDetailByCode(e.getCode(),e.getArgs());
         jsonResult.setMsg(message);
+        jsonResult.setData(e.getArgs());
         return new ResponseEntity<>(jsonResult, HttpStatus.BAD_REQUEST);
     }
 
