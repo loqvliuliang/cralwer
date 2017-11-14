@@ -15,21 +15,8 @@ $(function(){
         }
         if(psw1.length<6){
             ok=false;
-            $("#message").html("密码不得少于6位12!");
+            $("#message").html("密码不得少于6位!");
         }
-        // if(ok){//如果浏览器检查过关,则发送ajax请求
-        //     $.ajax({
-        //         url:path+"/login/insertOrUpdate?userName="+code+"&password="+psw1+"&mail="+email+"&authCode="+auth,
-        //         type:"get",
-        //         dataType:"json",
-        //         success:function(result){
-        //             alert("注册成功!");
-        //         },
-        //         error:function(){
-        //             alert("注册失败!");
-        //         }
-        //     });
-        // }
         var data = {
             "userName":code,
             "password":psw1,
