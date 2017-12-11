@@ -66,4 +66,17 @@ $(function(){
         }
     });
 
+    $("#testDownLoad").click(function () {
+        $.ajax({
+            url:path+"/login/download?path=D:/budgetFile/2ec774f5-7aba-486c-bd48-cf2ae74c9d9f/budgetJournal/a9680bcf-f4a6-4893-a6ca-9084e86c00bf-阿里云.txt",
+            type:"get",
+            success:function (){
+                
+            },
+            error:function(){
+
+            }
+        })
+    });
+
 });

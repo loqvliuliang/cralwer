@@ -56,4 +56,42 @@
     </changeSet>
 
 
+    <changeSet id="201711161114001" author="liang.liu">
+        <createTable tableName="exp_form_assign_company" remarks="表单分配公司">
+            <column name="id" type="bigint" remarks="id">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="company_id" type="bigint" remarks="公司id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="form_oid" type="varchar(36)" remarks="表单oid">
+                <constraints nullable="false"/>
+            </column>
+            <column name="version_number" type="int" remarks="版本号">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_enabled" type="boolean" remarks="启用标志">
+                <constraints nullable="false"/>
+            </column>
+            <column name="is_deleted" type="boolean" remarks="删除标志">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_date" type="timestamp" defaultValue="${now}" remarks="创建日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_by" type="bigint" remarks="创建用户ID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_updated_date" type="timestamp" defaultValue="${now}" remarks="最后更新日期">
+                <constraints nullable="false"/>
+            </column>
+            <column name="last_updated_by" type="bigint" remarks="最后更新用户ID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+
+
+
 </databaseChangeLog>
