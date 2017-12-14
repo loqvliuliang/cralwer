@@ -38,6 +38,8 @@ public class userController {
     }
 
 
+
+
 //    /**
 //     * 邮箱认证接口
 //     * @param mail
@@ -60,6 +62,11 @@ public class userController {
 //    }
 //
 //
+
+    @GetMapping("/getUser/ByUserNameOrMail")
+    public ResponseEntity<User> getUserByNameOrMail(@RequestParam("code") String NameOrMail){
+            return ResponseEntity.ok(userService.getUserByNameOrMail(NameOrMail));
+    }
 
 
 }

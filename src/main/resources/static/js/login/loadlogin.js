@@ -35,9 +35,32 @@ $(function(){
                 type:"post",
                 dataType:"json",
                 success:function(result){//返回user对象
+                    console.log(result);
+                    addCookie("token",result.access_token,2);
+                    console.log(getCookie("token"));
+                    //通过用户名获取用户信息，并封装，放在cookie里面
+                    $.ajax({
+                        contentType : 'application/json',
+                        beforeSend: function(request){
+                            request.setRequestHeader("Authorization", 'Bearer '+getCookie("token"));
+                        },
+                        url:path+"/user/getUser/ByUserNameOrMail?code="+usercode,
+                        type:"get",
+                        dataType:"json",
+                        success:function(userInfo){
+                            console.log(userInfo);
+                            addCookie("user",userInfo);
+                            addCookie("code",userInfo.username);
+                            window.location.href="index.html";
+                        },
+                        error:function () {
+                            alert("获取用户信息失败");
+                        }
+                    })
 
                     if(result.state==0){
                         var user = result.data;
+
                         addCookie("id",user.user_id,2);
                         addCookie("code",user.user_code,2);
                         //将user_id存入cookie

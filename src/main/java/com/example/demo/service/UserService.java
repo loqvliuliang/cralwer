@@ -126,6 +126,16 @@ public class UserService extends ServiceImpl<UserMapper,User> {
         }
     }
 
+    /*根据用户名或邮箱获取用户信息 */
+    public User getUserByNameOrMail(String name){
+        return userMapper.selectList(
+                new EntityWrapper<User>()
+                        .eq("user_name",name)
+                        .or()
+                        .eq("mail",name))
+                .get(0) ;
+    }
+
 
 
 

@@ -32,9 +32,9 @@ public class loginController {
 
     /*用户登陆接口*/
     @PostMapping()
-    public ResponseEntity<Boolean> login(@RequestBody User user){
+    public ResponseEntity<JsonResult> login(@RequestBody User user){
         System.out.println(user.toString());
-        return ResponseEntity.ok(userService.login(user));
+        return new ResponseEntity<>(new JsonResult(userService.login(user)),HttpStatus.OK);
     }
     /**
      * 邮箱认证接口
@@ -43,7 +43,7 @@ public class loginController {
      */
     @GetMapping(value = "/authMail")
     public  ResponseEntity<JsonResult> authMail(@RequestParam("mail") String mail)  {
-        return  new ResponseEntity<JsonResult>(new JsonResult(userService.AuthMail(mail)), HttpStatus.OK);
+        return  new ResponseEntity<>(new JsonResult(userService.AuthMail(mail)), HttpStatus.OK);
     }
 
 //    /**
