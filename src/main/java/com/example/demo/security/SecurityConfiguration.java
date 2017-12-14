@@ -81,8 +81,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-                // 通过用户名获取用户信息
-                User account = userMapper.selectList(new EntityWrapper<User>().eq("user_name",name)).get(0) ;
+                // 通过用户名或邮箱获取用户信息
+                User account = userMapper.selectList(
+                        new EntityWrapper<User>()
+                                .eq("user_name",name)
+                                .or()
+                                .eq("mail",name))
+                                .get(0) ;
                 List<String> roles = new ArrayList<>();
                 if(account!=null){
                     List<UserRole> userRoles =userRoleMapper.selectList(new EntityWrapper<UserRole>().eq("user_id",account.getId()));

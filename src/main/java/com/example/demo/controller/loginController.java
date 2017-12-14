@@ -13,7 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.NotNull;
 import java.io.IOException;
 
 
@@ -30,6 +29,13 @@ public class loginController {
     }
 
 
+
+    /*用户登陆接口*/
+    @PostMapping()
+    public ResponseEntity<Boolean> login(@RequestBody User user){
+        System.out.println(user.toString());
+        return ResponseEntity.ok(userService.login(user));
+    }
     /**
      * 邮箱认证接口
      * @param mail

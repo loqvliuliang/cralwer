@@ -56,6 +56,9 @@ public class OAuth2ServerConfig {
                     .antMatchers("/login/**").permitAll()
                     .and()
                     .authorizeRequests()
+                    .antMatchers("/templates/**").permitAll()
+                    .and()
+                    .authorizeRequests()
                     .antMatchers("/static/**").permitAll()
                     ;
             // @formatter:on

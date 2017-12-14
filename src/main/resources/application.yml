@@ -6,9 +6,9 @@ liquibase:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/crawler
-    password: root
+    url: jdbc:mysql://www.hand-liang.top:3306/crawler
     username: root
+    password: 123456
     driver-class-name:  com.mysql.jdbc.Driver
   jackson:
     serialization:
@@ -35,6 +35,13 @@ spring:
             required: true
   thymeleaf:
     cache: false
+  resources:
+    chain:
+      strategy:
+        content:
+          enabled: true
+          paths: /**
+
 mybatis-plus:
   mapper-locations: com/example/demo/mapper/*Mapper.xml
   type-aliases-package: com.example.demo.domain

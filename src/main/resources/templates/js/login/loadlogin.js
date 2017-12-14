@@ -21,11 +21,10 @@ $(function(){
 
 
         if(ok){
-
             $.ajax({
-                url:path+"/login.do",
+                url:path+"/user/login",
                 type:"post",
-                data:{"usercode":usercode,"password":password},
+                data:{"userName":usercode,"password":password},
                 dataType:"json",
                 success:function(result){//返回user对象
 
@@ -41,7 +40,7 @@ $(function(){
 
                 },
                 error:function(){
-                    alert("登录失败！");
+                    alert("登录失败123！");
                 }
             });
         }

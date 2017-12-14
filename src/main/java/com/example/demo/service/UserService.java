@@ -5,26 +5,19 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.baomidou.mybatisplus.toolkit.CollectionUtils;
 import com.example.demo.controller.dto.UserDTO;
 import com.example.demo.domain.User;
+import com.example.demo.domain.UserRole;
 import com.example.demo.exception.BizException;
 import com.example.demo.mapper.UserMapper;
+import com.example.demo.mapper.UserRoleMapper;
 import com.example.demo.utils.MailUtil;
-import com.example.demo.utils.MessageUtil;
 import com.example.demo.utils.ResponseCode;
+import com.example.demo.utils.UserRoleInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.CacheManager;
-import org.springframework.context.annotation.Bean;
-import org.springframework.data.redis.cache.RedisCache;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import javax.xml.bind.ValidationException;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by 刘亮 on 2017/9/13.
@@ -32,14 +25,16 @@ import java.util.Random;
 @Service
 public class UserService extends ServiceImpl<UserMapper,User> {
     private final  UserMapper userMapper;
+    private final UserRoleMapper userRoleMapper;
 
     @Autowired
     RedisService redisService;
 
 
 
-    public UserService(UserMapper userMapper) {
+    public UserService(UserMapper userMapper, UserRoleMapper userRoleMapper) {
         this.userMapper = userMapper;
+        this.userRoleMapper = userRoleMapper;
     }
 
     public boolean login(User user){
@@ -48,6 +43,14 @@ public class UserService extends ServiceImpl<UserMapper,User> {
         String u = user.getUsername();
         wrapper.eq("password",user.getPassword());
         if(userMapper.selectList(wrapper).size()!=0){
+            return true;
+        }
+        if(
+                userMapper.selectList(
+                new EntityWrapper<User>()
+                        .eq("mail",user.getMail())
+                        .eq("password",user.getPassword())).size()!=0
+                ){
             return true;
         }
         return false;
@@ -64,8 +67,12 @@ public class UserService extends ServiceImpl<UserMapper,User> {
              if(!AuthMailCode(user.getMail(),userDTO.getAuthCode())){
                  throw new BizException(ResponseCode.MAIL_CODE_ERROR_60007,new Object[]{userDTO.getAuthCode()});
              }
-
+            //注册成功后，绑定用户角色，默认是用户角色;
             userMapper.insert(user);
+            UserRole userRole = new UserRole();
+            userRole.setUserId(user.getId());
+            userRole.setRoleId(UserRoleInfo.USER_ROLE);
+            userRoleMapper.insert(userRole);
             return userMapper.selectById(user);
 
         }

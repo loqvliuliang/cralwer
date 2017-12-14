@@ -5,7 +5,7 @@
 <!--  -->
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="js/jquery.min.js"></script>
+<script src="/webjars/jquery/js/jquery.min.js"></script>
 <!-- Custom Theme files -->
 <!--theme-style-->
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -22,7 +22,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="js/simpleCart.min.js"> </script>
 <script type="text/javascript" src="js/b.js"></script>
 <script type="text/javascript" src="js/cookie_util.js"></script>
-<script type="text/javascript" src="js/login/loadlogin.js"></script>
+<!--<script type="text/javascript" src="js/login/loadlogin.js"></script>-->
+<script type="text/javascript"th:src="${urls.getForLookupPath('js/login/loadlogin.js') }"></script>
 <!-- slide -->
 </head>
 <body>
@@ -37,7 +38,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 			</div>
 		
 			<div class="col-sm-4 header-left">		
-					<p class="log" id="user"><a href="mylogin.html">登录</a>
+					<p class="log" id="user"><a href="mylogin.html">登录1111</a>
 						<span>or</span><a  href="register.html">注册</a></p>
 					<div class="cart box_1">
 						<a >
@@ -194,7 +195,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<span>用户名</span>
 					<input type="text" id="usercode" name="usercode"> 
 			
-					<span>密码</span>
+					<span>密码1</span>
 					<input type="password" id="password" name="password"> 
 					<div class="word-in">
 				  		<a class="forgot" href="register.html">去注册?</a>

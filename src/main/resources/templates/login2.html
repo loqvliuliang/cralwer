@@ -15,6 +15,9 @@
 <meta name="keywords" content="Fashion Mania Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script type="text/javascript" src="${urls.getForLookupPath('/js/demo.js') }"></script>
+<script type="text/javascript" src="${urls.getForLookupPath('/js/demo.js') }"></script>
+
 <!-- start menu -->
 <link href="css/memenu.css" rel="stylesheet" type="text/css" media="all" />
 <script type="text/javascript" src="js/memenu.js"></script>
@@ -45,9 +48,9 @@ $(function(){
 		if(ok){
 			
 			$.ajax({
-				url:path+"/login.do",
+				url:path+"/user/login",
 				type:"post",
-				data:{"usercode":usercode,"password":password},
+				data:{"userName":usercode,"password":password},
 				dataType:"json",
 				success:function(result){//返回user对象
 					
