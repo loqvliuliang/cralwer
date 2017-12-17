@@ -23,7 +23,7 @@ $(function(){
 				type:"get",
 				dataType:"json",
 				success:function(result){
-                    alert("注册成功!");
+                    window.location.href="mylogin.html";
 				},
 				error:function(){
 					alert("注册失败!");
