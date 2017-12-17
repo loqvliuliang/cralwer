@@ -110,20 +110,20 @@
 		
 		*/
 		$.ajax({
-			url:path+"/loadGoodById.do",
+			url:path+"/api/good/getGoodById",
 			data:{"id":id},
-			type:"post",
+			type:"get",
 			dataType:"json",
 		    success:function(result){
 		    	/**
 		    		遇到了问题----将对应的图片显示
 		    	*/
 		    	var sli;
-		    	console.log(result.data.good_name);
+		    	console.log(result);
 	    		sli="";
-		    	sli+='<li data-thumb='+result.data.good_img+' style="list-style-type:none">';
+		    	sli+='<li data-thumb='+result.good_img+' style="list-style-type:none">';
 		        sli+='<div class="thumb-image">' ;
-		        sli+='<img src='+result.data.good_img+' data-imagezoom="true" class="img-responsive"/>';
+		        sli+='<img src='+result.good_img+' data-imagezoom="true" class="img-responsive"/>';
 		        sli+='</div>';
 		    	sli+='</li>';
 		    	//将sli转换为jquery对象
@@ -131,8 +131,8 @@
 		    	$("#divs").html(
 		    			
 						'<div class="single-para simpleCart_shelfItem">'+
-						'<h1>'+result.data.good_name+'</h1>'+
-						'<p>'+result.data.good_desc+'</p>'+
+						'<h1>'+result.good_name+'</h1>'+
+						'<p>'+result.good_desc+'</p>'+
 						'<div class="star-on">'+
 							'<ul>'+
 								'<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>'+
@@ -142,12 +142,12 @@
 								'<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>'+
 							'</ul>'+
 							'<div class="review">'+
-								'<a href="javascript:toread()"> '+result.data.good_com+'条评论 </a>/'+
+								'<a href="javascript:toread()"> '+result.good_com+'条评论 </a>/'+
 								'<a href="javascript:write()">  写评论</a>'+
 							'</div>'+
 						'<div class="clearfix"> </div>'+
 						'</div>'+
-							'<label  class="add-to item_price">'+result.data.good_price+'</label>'+
+							'<label  class="add-to item_price">'+result.good_price+'</label>'+
 						
 						'<div class="available">'+
 							'<h6>选择:</h6>'+

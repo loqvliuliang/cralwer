@@ -38,9 +38,9 @@ function loadshopcar(user_id){
 								
 				//此时还要根据goodid查询出商品的详细信息
 				$.ajax({
-					url:path+"/loadGoodById.do",
+					url:path+"/api/good/getGoodById",
 					data:{"id":goodid},
-					type:"post",
+					type:"get",
 					async:false,//特别注意,ajax在发送请求时,默认为异步,此时需要发送请求前的num,则需要关闭异步
 					dataType:"json",
 					success:function(result){

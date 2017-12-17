@@ -6,9 +6,9 @@ function loadToWriter(){
 	//此时需要通过用户id和商品id到数据库中找出用户名和商品名
 	if(goodId!=null){
 		$.ajax({
-			url:path+"/loadGoodById.do",
+			url:path+"/api/good/getGoodById",
 			data:{"id":goodId},
-			type:"post",
+			type:"get",
 			dataType:"json",
 			success:function(result){
 				if(result.state==0){

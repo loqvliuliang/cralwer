@@ -91,7 +91,8 @@
         </createTable>
     </changeSet>
 
-
-
+    <changeSet id="201712171922001" author="liang.liu">
+        <sqlFile path="classpath:liquibase/data/release1.0.0/init.sql" encoding="UTF-8"/>
+    </changeSet>
 
 </databaseChangeLog>

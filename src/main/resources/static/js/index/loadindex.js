@@ -76,8 +76,8 @@
       
       //alert(page);
       $.ajax({
-    	  url:path+"/loadGoods.do",
-    	  type:"post",
+    	  url:path+"/api/good/getAllGoods",
+    	  type:"get",
     	  //data:{"page":page},//分页查询,默认设置每页显示8个商品
     	  
     	  dataType:"json",

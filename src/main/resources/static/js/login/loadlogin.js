@@ -48,26 +48,16 @@ $(function(){
                         type:"get",
                         dataType:"json",
                         success:function(userInfo){
+                            // console.log(response);
+                            // console.log(status);
+                            // console.log(xhr);
                             console.log(userInfo);
                             addCookie("user",userInfo);
                             addCookie("code",userInfo.username);
                             window.location.href="index.html";
                         },
-                        error:function () {
-                            alert("获取用户信息失败");
-                        }
-                    })
-
-                    if(result.state==0){
-                        var user = result.data;
-
-                        addCookie("id",user.user_id,2);
-                        addCookie("code",user.user_code,2);
-                        //将user_id存入cookie
-                        window.location.href="index.html";
-                    }else{
-                        $("#msg").text(result.msg);
-                    }
+                        timeout:5000
+                    });
 
                 },
                 error:function(){
