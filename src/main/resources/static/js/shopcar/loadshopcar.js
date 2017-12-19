@@ -19,9 +19,8 @@
 	/***
 	*此函数实现删除购物车商品
 	*/
-	function del(btn,goodid){
-		var userid = getCookie("id");
-		if(goodid==""){
+	function del(btn,goodId){
+		if(goodId==""){
 			alert("请先选择商品");
 			return;
 		}
@@ -29,16 +28,16 @@
 		if(confirm("是否移出购物车")){
 			//alert("goodid:"+goodid);
 			$.ajax({
-				url:path+"/delshopcarBygoodId.do",
-				data:{"goodid":goodid,"userid":userid},
-				type:"post",
+				url:path+"/api/shopCar/delete/ByGoodIdAndUserId?goodId="+goodId+"&userId="+getCookie("id"),
+				type:"delete",
 				dataType:"json",
+                beforeSend: function(request){
+                    request.setRequestHeader("Authorization", 'Bearer '+getCookie("token"));
+                },
 				success:function(result){
 					//alert("ss");
-					if(result.state==0){
-						alert("删除成功");
-						location.reload();	
-					}
+					location.reload();
+
 				},
 				error:function(){
 					alert("系统异常,删除商品失败!");

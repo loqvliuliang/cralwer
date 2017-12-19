@@ -22,7 +22,9 @@ $(function(){
 				url:path+"/login/insertOrUpdate?userName="+code+"&password="+psw1+"&mail="+email+"&authCode="+auth,
 				type:"get",
 				dataType:"json",
-				success:function(result){
+				async:false,
+                crossDomain: true,
+                success:function(result){
                     window.location.href="mylogin.html";
 				},
 				error:function(){
@@ -43,6 +45,7 @@ $(function(){
 				url:path+"/login/authMail?mail="+email,
 				type:"get",
 				dataType:"json",
+				async:false,
 				success:function(){
                     alert("发送成功!");
 				},

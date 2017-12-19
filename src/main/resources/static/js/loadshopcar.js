@@ -12,18 +12,21 @@ function loadshopcar(user_id){
 	
 	//若不为空则可以发送ajax请求
 	$.ajax({
-		url:path+"/loadgoodsByUserId.do",
-		data:{"userid":user_id},
+		url:path+"/api/shopCar/getShopCar/ByUserId?userId="+user_id,
+        beforeSend: function(request){
+            request.setRequestHeader("Authorization", 'Bearer '+getCookie("token"));
+        },
 		async:false,
-		type:"post",
+		type:"get",
 		dataType:"json",
 		success:function(result){
 			
 			//alert("根据用户名加载他的商品成功!");
 			console.log(result);
 			var str ="";
-			var map = result.data;
+			var map = result;
 			console.log(map);
+
 			
 			/************************
 			 * 新收获---在js中遍历map集合
@@ -39,16 +42,21 @@ function loadshopcar(user_id){
 				//此时还要根据goodid查询出商品的详细信息
 				$.ajax({
 					url:path+"/api/good/getGoodById",
+                    beforeSend: function(request){
+                        request.setRequestHeader("Authorization", 'Bearer '+getCookie("token"));
+                    },
 					data:{"id":goodid},
 					type:"get",
 					async:false,//特别注意,ajax在发送请求时,默认为异步,此时需要发送请求前的num,则需要关闭异步
 					dataType:"json",
 					success:function(result){
 						//alert("lalala");
-						var goodname = result.data.good_name;
-						var gooddesc=result.data.good_desc;
-						var goodprice = result.data.good_price;
-						var goodimg=result.data.good_img;
+						var goodname = result.good_name;
+						var gooddesc=result.good_desc;
+						var goodprice = result.good_price;
+						var goodimg=result.good_img;
+
+						console.log(result);
 						
 						str='<tr>'+
 						'<td class="ring-in"><a href="single.html" class="at-in"><img src='+goodimg+' class="img-responsive" alt=""></a>'+
@@ -58,7 +66,7 @@ function loadshopcar(user_id){
 						'</div>'+
 						'<div class="clearfix"> </div></td>'+
 						'<td class="check"><input type="text" readonly value='+num+' ></td>	'+	
-						'<td>'+goodprice+'</td>'+
+						'<td>'+goodprice*num+'</td>'+
 						'<td>待完善</td>'+
 						'<td><input type="button" onclick="del(this,'+goodid+')" id="delshopcar" value="X"/></td>'+
 					    '</tr>'

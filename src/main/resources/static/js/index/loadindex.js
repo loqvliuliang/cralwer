@@ -87,7 +87,8 @@
     	  error:function(){
     		  alert("加载失败");
     	  }
-      }); 
+      });
+      return false;
     });
     
     

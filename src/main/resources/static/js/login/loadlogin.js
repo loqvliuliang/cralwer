@@ -34,6 +34,8 @@ $(function(){
                 url:path+"/oauth/token?username="+usercode+"&password="+password+"&grant_type=password&scope=select&client_id=client_2&client_secret=123456",
                 type:"post",
                 dataType:"json",
+                crossDomain: true,
+                async:false,
                 success:function(result){//返回user对象
                     console.log(result);
                     addCookie("token",result.access_token,2);
@@ -46,17 +48,20 @@ $(function(){
                         },
                         url:path+"/user/getUser/ByUserNameOrMail?code="+usercode,
                         type:"get",
+                        crossDomain: true,
                         dataType:"json",
+                        async:false,
                         success:function(userInfo){
                             // console.log(response);
                             // console.log(status);
                             // console.log(xhr);
                             console.log(userInfo);
+                            console.log(123000);
                             addCookie("user",userInfo);
                             addCookie("code",userInfo.username);
+                            addCookie("id",userInfo.id);
                             window.location.href="index.html";
-                        },
-                        timeout:5000
+                        }
                     });
 
                 },
@@ -65,5 +70,6 @@ $(function(){
                 }
             });
         }
+        return false;
     });
 });

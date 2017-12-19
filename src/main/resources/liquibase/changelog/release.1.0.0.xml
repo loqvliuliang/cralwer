@@ -94,5 +94,15 @@
     <changeSet id="201712171922001" author="liang.liu">
         <sqlFile path="classpath:liquibase/data/release1.0.0/init.sql" encoding="UTF-8"/>
     </changeSet>
+    <changeSet id="201712181313001" author="liang.liu">
+        <addColumn tableName="shopcar">
+            <column name="number" type="int" remarks="商品数量"/>
+            <column name="total_amount" type="double" remarks="商品总金额"/>
+        </addColumn>
+    </changeSet>
+    
+    <changeSet id="201712181941001" author="liang.liu">
+        <renameColumn tableName="shopcar" oldColumnName="total_amount" newColumnName="goodprice" columnDataType="double" remarks="物品    总金额"/>
+    </changeSet>
 
 </databaseChangeLog>
