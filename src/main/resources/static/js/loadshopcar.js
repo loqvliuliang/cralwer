@@ -59,7 +59,7 @@ function loadshopcar(user_id){
 						console.log(result);
 						
 						str='<tr>'+
-						'<td class="ring-in"><a href="single.html" class="at-in"><img src='+goodimg+' class="img-responsive" alt=""></a>'+
+						'<td class="ring-in"><a href="toSingle('+goodid+')" class="at-in"><img src='+goodimg+' class="img-responsive" alt=""></a>'+
 						'<div class="sed">'+
 						'<h5>'+goodname+'</h5>'+
 						'<p>'+gooddesc+'</p>'+				
@@ -87,9 +87,79 @@ function loadshopcar(user_id){
 		}
 		
 	});
-	
-	
-	
-	
+
+}
+
+
+function toSingle(goodid) {
+    $.ajax({
+        url:path+"/api/good/getGoodById",
+        data:{"id":goodid},
+        type:"get",
+        dataType:"json",
+        success:function(result){
+
+            /**
+             遇到了问题----将对应的图片显示
+             */
+            var sli;
+            console.log(result);
+            sli="";
+            sli+='<li data-thumb='+result.good_img+' style="list-style-type:none">';
+            sli+='<div class="thumb-image">' ;
+            sli+='<img src='+result.good_img+' data-imagezoom="true" class="img-responsive"/>';
+            sli+='</div>';
+            sli+='</li>';
+            //将sli转换为jquery对象
+            $("#goodimg").html(sli);
+            $("#divs").html(
+
+                '<div class="single-para simpleCart_shelfItem">'+
+                '<h1>'+result.good_name+'</h1>'+
+                '<p>'+result.good_desc+'</p>'+
+                '<div class="star-on">'+
+                '<ul>'+
+                '<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>'+
+                '<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>'+
+                '<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>'+
+                '<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>'+
+                '<li><a href="#"><i class="glyphicon glyphicon-star"> </i></a></li>'+
+                '</ul>'+
+                '<div class="review">'+
+                '<a href="javascript:toread()"> '+result.good_com+'条评论 </a>/'+
+                '<a href="javascript:write()">  写评论</a>'+
+                '</div>'+
+                '<div class="clearfix"> </div>'+
+                '</div>'+
+                '<label  class="add-to item_price">'+result.good_price+'</label>'+
+
+                '<div class="available">'+
+                '<h6>选择:</h6>'+
+                '<ul>'+
+                '<li>尺码:<select>'+
+                '<option>L</option>'+
+                '<option>M</option>'+
+                '<option>S</option>'+
+                '</select></li>'+
+                '<li>支付:'+
+                '<select>'+
+                '<option>RMB</option>'+
+                '<option>$</option>'+
+                '</select></li>'+
+                '</ul>'+
+                '</div>'+
+                '<a href="javascript:tocheck()" class="cart item_add">加入购物车</a>'+
+                '</div>'
+            );
+
+
+
+
+
+        },
+        error:function(){
+            alert("详情页面加载失败,请稍后再试");
+        }
+    });
 	
 }

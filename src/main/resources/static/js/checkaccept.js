@@ -4,14 +4,17 @@ function tocheck(){
 		var userid = getCookie("id");
 		$.ajax({
 			//通过用户id,检查用户是否填写了收货地址
-			url:path+"/checkaccept.do",
+			url:path+"/api/accept/getByUserId",
 			data:{"userId":userid},
-			type:"post",
+			type:"get",
+            beforeSend: function(request){
+                request.setRequestHeader("Authorization", 'Bearer '+getCookie("token"));
+            },
 			dataType:"json",
 			success:function(result){
 				alert("通过用户id检查收货地址完毕!");
-				var user_accept=result.data;
-				console.log(result.data);
+				var user_accept=result;
+				console.log(result);
 				if(user_accept==null){
 					alert("请填写收货地址!");
 					window.location.href="accept.html";

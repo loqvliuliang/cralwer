@@ -41,13 +41,13 @@ $(function(){
             $("#message").html("请输入邮箱!");
 		}
 		if(ok){
+            $("#message").html("");
         	$.ajax({
 				url:path+"/login/authMail?mail="+email,
 				type:"get",
 				dataType:"json",
-				async:false,
 				success:function(){
-                    alert("发送成功!");
+                    alert("验证码发送成功!");
 				},
                 error:function (result) {
 					console.log(result);
@@ -56,6 +56,7 @@ $(function(){
 
 			})
 		}
+		return false;
     });
 
 });

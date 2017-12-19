@@ -33,13 +33,16 @@
 		if(flag){
 			$.ajax({
 				//通过用户id,检查用户是否填写了收货地址
-				url:path+"/checkaccept.do",
+				url:path+"/api/accept/getByUserId",
 				data:{"userId":userid},
-				type:"post",
+				type:"get",
+                beforeSend: function(request){
+                    request.setRequestHeader("Authorization", 'Bearer '+getCookie("token"));
+                },
 				dataType:"json",
 				success:function(result){
 					//alert("通过用户id检查收货地址完毕!");
-					var user_accept=result.data;
+					var user_accept=result;
 					console.log(result.data);
 					if(user_accept==null){
 						alert("请先填写收货地址!");
@@ -64,24 +67,17 @@
 						//1:根据goodid添加此商品,
 						//2:在数据库里面查出userid对应的goodid
 						if(ok){
-							$.ajax({
-								url:path+"/addgoodcar.do",
-								type:"post",
-								data:{"goodid":goodid,"userid":userid},
-								dataType:"json",
-								success:function(result){
-									if(result.state==0){//正常返回
-										alert("成功加入购物车");
-										//加入购物车成功后,就跳转到购物车界面
-										window.location.href="shopcar.html";
-									}else{
-										alert("加入购物车失败");
-									}
-								},
-								error:function(){
-									alert("加载购物车失败");
-								}	
-							});
+                            $.ajax({
+                                url:path+"/api/shopCar/addGoodToShopCar?userId="+getCookie("id")+"&goodId="+goodid,
+                                beforeSend: function(request){
+                                    request.setRequestHeader("Authorization", 'Bearer '+getCookie("token"));
+                                },
+                                type:"get",
+                                dataType:"json",
+                                success:function(result){
+                                    window.location.href="shopcar.html";
+                                }
+                            })
 						}
 						
 					}
