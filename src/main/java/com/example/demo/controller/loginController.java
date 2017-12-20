@@ -20,7 +20,7 @@ import java.io.IOException;
  * Created by 刘亮 on 2017/11/10.
  */
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/api/login")
 public class loginController {
     private final UserService userService;
 

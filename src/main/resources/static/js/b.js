@@ -1,1 +1,1 @@
-var path = "http://localhost:2222" ;
+var path = "http://119.23.244.172:2222" ;

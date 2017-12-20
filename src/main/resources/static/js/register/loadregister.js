@@ -43,10 +43,12 @@ $(function(){
 		if(ok){
             $("#message").html("");
         	$.ajax({
-				url:path+"/login/authMail?mail="+email,
+				url:path+"/api/login/authMail?mail="+email,
 				type:"get",
+				async:false,
 				dataType:"json",
-				success:function(){
+				success:function(result){
+                    console.log(result);
                     alert("验证码发送成功!");
 				},
                 error:function (result) {

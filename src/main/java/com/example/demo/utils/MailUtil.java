@@ -32,11 +32,11 @@ public class MailUtil {
         Random random = new Random();
         Integer i = random.nextInt(9999-1000+1)+1000;
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
-        simpleMailMessage.setFrom("loqvliuliang@163.com");
+        simpleMailMessage.setFrom("939513800@qq.com");
         simpleMailMessage.setTo(mail);
         simpleMailMessage.setSubject(MessageUtil.LOGIN_MAIL);
         simpleMailMessage.setText("欢迎注册亮亮购物商城！验证码： "+i.toString()+",请勿告诉任何人。此验证码将在30分钟后失效！");
-        String[] arr = {"loqvliuliang@163.com"};
+        String[] arr = {"939513800@qq.com"};
         simpleMailMessage.setCc(arr);
         javaMailSender.send(simpleMailMessage);
         return i.toString();

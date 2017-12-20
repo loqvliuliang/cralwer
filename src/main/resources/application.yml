@@ -23,9 +23,9 @@ spring:
       max-idle: 8
       max-wait: -1
   mail:
-    host: smtp.163.com
-    username: loqvliuliang@163.com
-    password: handhand123
+    host: smtp.qq.com
+    username: 939513800@qq.com
+    password: krmlvknwpjlvbfbj
     properties:
       mail:
         smtp:
