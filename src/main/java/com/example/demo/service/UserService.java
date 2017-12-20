@@ -13,6 +13,7 @@ import com.example.demo.utils.MailUtil;
 import com.example.demo.utils.ResponseCode;
 import com.example.demo.utils.UserRoleInfo;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.mail.EmailException;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -82,14 +83,14 @@ public class UserService extends ServiceImpl<UserMapper,User> {
 
 
     //发送邮件验证码
-    public String AuthMail(String mail){
+    public String AuthMail(String mail) throws EmailException {
         //首先看邮箱是否已经注册
         List<User> list = userMapper.selectList(new EntityWrapper<User>().eq("mail",mail));
         if(CollectionUtils.isNotEmpty(list)){
             throw new BizException(ResponseCode.USER_MAIL_EXIT_60003);
         }
         if(StringUtils.isNotEmpty(mail)){
-            String authMail= MailUtil.AuthMail(mail);
+            String authMail= MailUtil.AuthMailSSL(mail);
             //将验证码存入Reids缓存
             redisService.setStr(mail,authMail);
             return authMail;

@@ -5,6 +5,7 @@ import com.example.demo.domain.User;
 import com.example.demo.service.UserService;
 
 import com.example.demo.utils.JsonResult;
+import org.apache.commons.mail.EmailException;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
@@ -42,7 +43,7 @@ public class loginController {
      * @return
      */
     @GetMapping(value = "/authMail")
-    public  ResponseEntity<JsonResult> authMail(@RequestParam("mail") String mail)  {
+    public  ResponseEntity<JsonResult> authMail(@RequestParam("mail") String mail) throws EmailException {
         return  new ResponseEntity<>(new JsonResult(userService.AuthMail(mail)), HttpStatus.OK);
     }
 
