@@ -19,7 +19,7 @@ $(function(){
 		}
 		if(ok){//如果浏览器检查过关,则发送ajax请求
 			$.ajax({
-				url:path+"/login/insertOrUpdate?userName="+code+"&password="+psw1+"&mail="+email+"&authCode="+auth,
+				url:path+"/api/login/insertOrUpdate?userName="+code+"&password="+psw1+"&mail="+email+"&authCode="+auth,
 				type:"get",
 				dataType:"json",
 				async:false,
@@ -40,25 +40,23 @@ $(function(){
         	ok=false;
             $("#message").html("请输入邮箱!");
 		}
-		if(ok){
+		if(ok) {
             $("#message").html("");
-        	$.ajax({
-				url:path+"/api/login/authMail?mail="+email,
-				type:"get",
-				async:false,
-				dataType:"json",
-				success:function(result){
+            $.ajax({
+                url: path + "/api/login/authMail?mail=" + email,
+                type: "get",
+                dataType: "json",
+                success: function (result) {
                     console.log(result);
                     alert("验证码发送成功!");
-				},
-                error:function (result) {
-					console.log(result);
+                },
+                error: function (result) {
+                    console.log(result);
                     $("#message").html("验证码发送失败!");
                 }
 
-			})
-		}
-		return false;
+            })
+        }
     });
 
 });

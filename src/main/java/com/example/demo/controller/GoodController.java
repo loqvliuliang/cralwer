@@ -3,7 +3,9 @@ package com.example.demo.controller;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.example.demo.domain.Good;
+import com.example.demo.domain.Writes;
 import com.example.demo.service.GoodService;
+import com.example.demo.service.WritesService;
 import com.example.demo.utils.MyBatisPageUtil;
 import java.util.List;
 import org.springframework.data.domain.Pageable;
@@ -21,9 +23,11 @@ import org.springframework.web.bind.annotation.*;
 public class GoodController {
 
     private final GoodService goodService;
+    private final WritesService writesService;
 
-    public GoodController(GoodService goodService) {
+    public GoodController(GoodService goodService, WritesService writesService) {
         this.goodService = goodService;
+        this.writesService = writesService;
     }
 
 
@@ -39,7 +43,9 @@ public class GoodController {
 
     @GetMapping("/getGoodById")
     public ResponseEntity<Good> getGoodById(@RequestParam String id){
-        return ResponseEntity.ok(goodService.selectOne(new EntityWrapper<Good>().eq("good_id",id)));
+        Good good = goodService.selectOne(new EntityWrapper<Good>().eq("good_id",id));
+//        good.setGood_com(writesService.selectList(new EntityWrapper<Writes>().eq("good_id",id)).size());;
+        return ResponseEntity.ok(good);
     }
 
 

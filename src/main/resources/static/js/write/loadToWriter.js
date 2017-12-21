@@ -35,19 +35,17 @@ function send(){
 	if(userId!=null && goodId!=null){
 		//alert("ajax");
 		$.ajax({
-			url:path+"/writemsg.do",
-			data:{"userid":userId,"goodid":goodId,"msg":msg},
+			url:path+"/api/writes/insert",
+			data:JSON.stringify({"user_id":userId,"good_id":goodId,"write_desc":msg}),
 			type:"post",
 			dataType:"json",
+            beforeSend: function(request){
+                request.setRequestHeader("Authorization", 'Bearer '+getCookie("token"));
+            },
+            contentType: "application/json",
 			success:function(result){
-				if(result.state==0){
-					//alert("chengg");
 					alert("提交评论成功！");
 					window.location.href="single.html";
-				}else{
-					alert(result.msg);
-				}
-				
 			},
 			error:function(){
 				alert("提交评论失败");

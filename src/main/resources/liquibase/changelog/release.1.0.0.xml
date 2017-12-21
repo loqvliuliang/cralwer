@@ -104,5 +104,8 @@
     <changeSet id="201712181941001" author="liang.liu">
         <renameColumn tableName="shopcar" oldColumnName="total_amount" newColumnName="goodprice" columnDataType="double" remarks="物品    总金额"/>
     </changeSet>
+    <changeSet id="20171221001" author="liang.liu">
+        <modifyDataType tableName="writes" columnName="createTime" newDataType="timestamp"/>
+    </changeSet>
 
 </databaseChangeLog>

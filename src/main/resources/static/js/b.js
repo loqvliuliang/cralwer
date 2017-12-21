@@ -1,1 +1,1 @@
-var path = "http://localhost:2222" ;
+var path = "http://www.hand-liang.top:2222" ;

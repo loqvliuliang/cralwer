@@ -96,9 +96,9 @@ function toSingle(goodid) {
         url:path+"/api/good/getGoodById",
         data:{"id":goodid},
         type:"get",
+        async:false,
         dataType:"json",
         success:function(result){
-
             /**
              遇到了问题----将对应的图片显示
              */

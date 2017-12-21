@@ -59,7 +59,7 @@ public class DatabaseConfiguration {
         if (StringUtils.hasLength(this.properties.getTypeHandlersPackage())) {
             mybatisSqlSessionFactoryBean.setTypeHandlersPackage(this.properties.getTypeHandlersPackage());
         }else {
-            mybatisSqlSessionFactoryBean.setTypeHandlersPackage("com.example.demo.service.mapper.typehandler");
+            mybatisSqlSessionFactoryBean.setTypeHandlersPackage("com.example.demo.mapper.typehandler");
         }
         if (!ObjectUtils.isEmpty(this.properties.resolveMapperLocations())) {
             mybatisSqlSessionFactoryBean.setMapperLocations(this.properties.resolveMapperLocations());

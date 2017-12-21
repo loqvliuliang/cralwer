@@ -8,14 +8,16 @@ function loadToWriter(){
 		$.ajax({
 			url:path+"/api/good/getGoodById",
 			data:{"id":goodId},
+            beforeSend: function(request){
+                request.setRequestHeader("Authorization", 'Bearer '+getCookie("token"));
+            },
 			type:"get",
 			dataType:"json",
 			success:function(result){
-				if(result.state==0){
-					var goodname  = result.data.good_name;
-					$("#writeuser").text("用户:"+userCode+",您好!");
-					$("#writegood").text("欢迎评论:"+goodname);
-				}
+				var goodname  = result.good_name;
+				$("#writeuser").text("用户:"+userCode+",您好!");
+				$("#writegood").text("欢迎评论:"+goodname);
+
 			},
 			error:function(){
 				alert("根据商品id查找商品信息失败!");	
