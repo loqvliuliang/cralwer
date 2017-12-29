@@ -35,6 +35,7 @@ public class OAuth2ServerConfig {
 
         @Override
         public void configure(HttpSecurity http) throws Exception {
+            http.headers().frameOptions().disable();
             // @formatter:off
             http
                     // Since we want the protected resources to be accessible in the UI as well we need

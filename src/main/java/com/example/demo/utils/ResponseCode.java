@@ -17,5 +17,10 @@ public interface ResponseCode {
     String MAIL_CODE_ERROR_60007="60007";//邮箱验证码不正确
 
 
+    /*附件模块70*/
+    String ATTACHMENT_TYPE_NOT_NULL = "70001";//附件类型为空
+    String BUDGET_JOURNAL_HEAD_UPLOAD_ERR="70002";//商品上传错误
+    String BUDGET_JOURNAL_HEAD_FILE_IS_NULL="70003";//商品上传为空
+
 
 }

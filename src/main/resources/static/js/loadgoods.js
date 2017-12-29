@@ -36,6 +36,7 @@ function addShopCar(id) {
 	if(!getCookie("id")){
 		return;
 	}else{
+		console.log("即将发送加入购物车请求,请求加入购物车的商品id: "+id);
         $.ajax({
             url:path+"/api/shopCar/addGoodToShopCar?userId="+getCookie("id")+"&goodId="+id,
             beforeSend: function(request){
