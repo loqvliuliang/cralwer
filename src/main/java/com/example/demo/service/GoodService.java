@@ -40,12 +40,12 @@ public class GoodService extends BaseService<GoodMapper,Good> {
         goods.forEach(
             good -> {
                 if(good.getGood_id()==null){
-                    good.setGood_id(ShopUtil.createId());
+//                    good.setGood_id();
                     goodMapper.insert(good);
                 }else {
                     goodMapper.updateById(good);
                 }
-                goodList.add(goodMapper.selectList(new EntityWrapper<Good>().eq("good_id",good.getGood_id())).get(0));
+                goodList.add(goodMapper.selectList(new EntityWrapper<Good>().eq("id",good.getGood_id())).get(0));
             }
         );
         return goodList;

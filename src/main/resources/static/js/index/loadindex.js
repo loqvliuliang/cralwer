@@ -100,7 +100,7 @@
     	//将点中的商品id绑定到cookie并跳转到商品详情页面
     	//绑定id是为了使用户看到商品详情页面时,是自己选中
     	//的商品详情
-    	//alert("详情id:"+id);
+    	alert("详情id:"+id);
     	addCookie("good_id",id,1);
     	window.location.href="single.html";
     }

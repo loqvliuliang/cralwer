@@ -2,6 +2,14 @@
  * Created by 刘亮 on 2017/12/27.
  */
 $(function(){
+    //校验是否登陆：
+    var token = getCookie("id");
+    if(!token){
+        alert("请登陆后上传商品！");
+        location.href="mylogin.html";
+        return;
+    }
+
 
     $("#send").click(function(){
         var name = $("#good_name").val().trim();

@@ -4,10 +4,11 @@ function loadgoods(result){
 	
 	
 	 console.log("加载长度:"+result.length);
+	 console.log(result);
 	 
 	 var div="";
 	 for(var i=0;i<result.length;i++){
-		 var id=result[i].good_id;
+		 var id=result[i].id.toString();
 		 var name =result[i].good_name;
 		 var price  =result[i].good_price;
 		 var img = result[i].good_img;
@@ -27,6 +28,7 @@ function loadgoods(result){
 		  '</div>'+
 	    '</div>';
 		 console.log(name);
+		 console.log(id);
 	 }
 	 $("#divs").html(div+""); 
 }

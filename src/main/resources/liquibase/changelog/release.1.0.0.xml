@@ -146,5 +146,11 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="201712291611001" author="liang.liu">
+        <modifyDataType tableName="goods" columnName="good_id" newDataType="bigint"/>
+    </changeSet>
+    <changeSet id="20171229002" author="liang.liu">
+        <renameColumn tableName="goods" oldColumnName="good_id" newColumnName="id" columnDataType="bigint"/>
+    </changeSet>
 
 </databaseChangeLog>

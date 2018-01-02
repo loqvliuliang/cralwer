@@ -43,7 +43,7 @@ public class GoodController {
 
     @GetMapping("/getGoodById")
     public ResponseEntity<Good> getGoodById(@RequestParam String id){
-        Good good = goodService.selectOne(new EntityWrapper<Good>().eq("good_id",id));
+        Good good = goodService.selectOne(new EntityWrapper<Good>().eq("id",id));
 //        good.setGood_com(writesService.selectList(new EntityWrapper<Writes>().eq("good_id",id)).size());;
         return ResponseEntity.ok(good);
     }

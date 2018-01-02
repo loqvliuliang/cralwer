@@ -52,7 +52,7 @@
 						//加入购物车在此处实现
 						//alert("Ddd");
 						var userid=getCookie("id");
-						var goodid=getCookie("good_id");
+						var goodid=getCookie("good_id").toString();
 						//alert("ssss");
 						console.log(userid);
 						console.log(goodid);
