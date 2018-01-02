@@ -54,13 +54,13 @@ public class ShopCarService extends BaseService<ShopCarMapper,ShopCar> {
             shopCar.setUser_id(userId.toString());
             shopCar.setShopcar_id(ShopUtil.createId());
             shopCar.setCreateTime(new Date().getTime());
-            shopCar.setGoodprice(Double.parseDouble(goodService.selectOne(new EntityWrapper<Good>().eq("good_id",goodId)).getGood_price()));
+            shopCar.setGoodprice(goodService.selectOne(new EntityWrapper<Good>().eq("id",goodId)).getGood_price());
             shopCarMapper.insert(shopCar);
             return true;
         }else {
             ShopCar shopCar = list.get(0);
             shopCar.setNumber(shopCar.getNumber()+1);
-            shopCar.setGoodprice(shopCar.getGoodprice()+Double.parseDouble(goodService.selectOne(new EntityWrapper<Good>().eq("good_id",goodId)).getGood_price()));
+            shopCar.setGoodprice(shopCar.getGoodprice()+goodService.selectOne(new EntityWrapper<Good>().eq("good_id",goodId)).getGood_price());
             shopCarMapper.update(shopCar,new EntityWrapper<ShopCar>().eq("shopcar_id",shopCar.getShopcar_id()));
             return true;
         }
@@ -73,7 +73,7 @@ public class ShopCarService extends BaseService<ShopCarMapper,ShopCar> {
     }
 
     /*根据商品和用户id删除*/
-    public Boolean deleteByGoodIdAndUserId(String goodId,Long userId){
+    public Boolean deleteByGoodIdAndUserId(Long goodId,Long userId){
         shopCarMapper.delete(
                 new EntityWrapper<ShopCar>()
                     .eq("good_id",goodId)

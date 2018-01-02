@@ -3,11 +3,14 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>PaysApi JAVA Demo Index</title>
+    <script type="text/javascript" src="js/cookie_util.js"></script>
+    <script type="text/javascript" src="js/b.js"></script>
+    <script type="text/javascript" src="assets/js/jquery-1.11.1.js"></script>
 </head>
 <body>
 
     <form>
-        <p><input id="inputprice" type="text" name="inputprice" class="form-control" placeholder="请输入金额" required></p>
+        <p><input id="inputprice" type="text" readonly="true" name="inputprice" class="form-control" placeholder="请输入金额" required></p>
                 
         <div class="radio">
             <label>            
@@ -43,6 +46,9 @@
 <script type="text/javascript" src="https://cdn.staticfile.org/jquery/1.11.1/jquery.min.js"></script>
 <script type="text/javascript">
 $().ready(function(){
+    $("#inputprice").val(getCookie("totalPrice"));
+
+
     function getistype(){
         return ($("#demo1-alipay").is(':checked') ? "1" : "2" ); 
     }
@@ -53,7 +59,9 @@ $().ready(function(){
             {
                 price : $("#inputprice").val(), 
                 istype : getistype(),
-
+                uid : getCookie("id"),
+                goodId : getCookie("goodId"),
+                number : getCookie("goodNumber")
             },
             function(data){
                 console.log("我是data:");

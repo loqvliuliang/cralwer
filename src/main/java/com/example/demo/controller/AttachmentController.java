@@ -45,7 +45,7 @@ public class AttachmentController  {
                                                    @RequestParam Long userId,
                                                    @RequestParam("file") MultipartFile[] uploadfiles,
                                                    @RequestParam("good_name") String good_name,
-                                                   @RequestParam("good_price") String good_price,
+                                                   @RequestParam("good_price") Double good_price,
                                                    @RequestParam("good_desc") String good_desc
                                                    ){
         Good good = new Good();

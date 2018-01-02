@@ -38,7 +38,7 @@ public class ShopCarController {
 
 
     @DeleteMapping("/delete/ByGoodIdAndUserId")
-    public ResponseEntity<Boolean> deleteByGoodIdAndUserId(@RequestParam String goodId,@RequestParam Long userId){
+    public ResponseEntity<Boolean> deleteByGoodIdAndUserId(@RequestParam Long goodId,@RequestParam Long userId){
         return ResponseEntity.ok(shopCarService.deleteByGoodIdAndUserId(goodId, userId));
     }
 }

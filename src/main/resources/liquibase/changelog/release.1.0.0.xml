@@ -152,5 +152,29 @@
     <changeSet id="20171229002" author="liang.liu">
         <renameColumn tableName="goods" oldColumnName="good_id" newColumnName="id" columnDataType="bigint"/>
     </changeSet>
+    <changeSet id="201801020001" author="liang.liu">
+        <modifyDataType tableName="goods" columnName="good_price" newDataType="double"/>
+    </changeSet>
+    <changeSet id="201801020002" author="liang.liu">
+        <createTable tableName="order" remarks="已购订单">
+            <column name="id" type="bigint" remarks="已购订单id">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="user_id" type="bigint" remarks="用户id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="good_id" type="bigint" remarks="商品id">
+                <constraints nullable="false"/>
+            </column>
+            <column name="time" type="timestamp" defaultValue="${now}" remarks="购买时间"/>
+            <column name="number" type="int" remarks="商品数量"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="201801020003" author="liang.liu">
+        <renameTable oldTableName="order" newTableName="order_form"/>
+    </changeSet>
+    <changeSet id="201801020004" author="liang.liu">
+        <modifyDataType tableName="order_form" columnName="id" newDataType="varchar(50)"/>
+    </changeSet>
 
 </databaseChangeLog>

@@ -15,7 +15,7 @@ public class Good implements Serializable {
 	@JsonSerialize(using = ToStringSerializer.class)
 	private Long id;
 	private String good_name;
-	private String good_price;
+	private Double good_price;
 	private String good_img;
 	private String good_type;
 	private Integer good_num;
@@ -29,7 +29,7 @@ public class Good implements Serializable {
 	
 
 
-	public Good(Long good_id, String good_name, String good_price, String good_img, String good_type,
+	public Good(Long good_id, String good_name, Double good_price, String good_img, String good_type,
                 Integer good_num, String good_desc, Integer good_com) {
 		super();
 		this.id = good_id;
@@ -90,10 +90,10 @@ public class Good implements Serializable {
 	public void setGood_name(String good_name) {
 		this.good_name = good_name;
 	}
-	public String getGood_price() {
+	public Double getGood_price() {
 		return good_price;
 	}
-	public void setGood_price(String good_price) {
+	public void setGood_price(Double good_price) {
 		this.good_price = good_price;
 	}
 	public String getGood_img() {

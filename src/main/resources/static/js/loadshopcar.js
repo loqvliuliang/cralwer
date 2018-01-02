@@ -1,6 +1,8 @@
 /*
  * 这个js是根据用户id加载购物车的商品
  * */
+
+var cost = 0;
 function loadshopcar(user_id){
 
 	//检查用户id是否为空
@@ -72,6 +74,10 @@ function loadshopcar(user_id){
 					    '</tr>'
 						//tr节点加载完毕后,将其添加到父节点的最后
 						$("#trs").append(str);
+						cost = cost+goodprice*num;
+						addCookie("goodId",goodid);
+						addCookie("goodNumber",num);
+
 					},
 					error:function(){
 						alert("添加超时,需要重新登录啦");
@@ -162,4 +168,23 @@ function toSingle(goodid) {
         }
     });
 	
+}
+
+
+
+function tobuy(cost){
+    addCookie("totalPrice",cost);
+
+    var trs = document.getElementsByTagName("tr");
+    console.log(trs.length);
+    if(trs.length == 2){
+        window.location.href="pay.html";
+        return;
+    }else if(trs.length>2){
+        alert("对不起，暂时只支持购买单个商品");
+        return;
+    }else {
+        alert("请加入商品到购物车");
+    }
+
 }
