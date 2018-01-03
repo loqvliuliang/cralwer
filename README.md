@@ -16,5 +16,7 @@ SpringBoot上面集成各种技术
       
       
   3.梳理项目逻辑
-  	
+    
+    登陆集成springSecurity,添加SecurityConfiguration类。使用自己表里面的用户名（或邮箱）密码登陆
 
+	
