@@ -1,10 +1,11 @@
 function loadgoods(result){
 	 //此处是List<Good>集合
 	 //打桩:输出商品id
-	
+
 	
 	 console.log("加载长度:"+result.length);
 	 console.log(result);
+
 	 
 	 var div="";
 	 for(var i=0;i<result.length;i++){

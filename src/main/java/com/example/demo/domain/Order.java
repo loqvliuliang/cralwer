@@ -16,8 +16,8 @@ import java.util.List;
 @TableName("order_form")
 @Data
 public class Order {
-
-    private String id;
+    @JsonSerialize(using = ToStringSerializer.class)
+    private Long id;
 
     @TableField("user_id")
     @JsonSerialize(using = ToStringSerializer.class)

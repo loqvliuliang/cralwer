@@ -7,8 +7,8 @@
 	    //alert("page:"+page);
 	    $("#next").click(function(){
 	    	page=page+1;
-	    	//alert(page);
 		    $("#page").val(page);
+            findGoods($("#page").val(),'');
 	    });
 	    $("#pre").click(function(){
 	    	if(page==1){
@@ -17,6 +17,7 @@
 	    	page=page-1;
 	    	//alert(page);
 		    $("#page").val(page);
+            findGoods($("#page").val(),'');
 	    });
 	    
     
@@ -25,32 +26,10 @@
     	//通过输入的查询
         var input = $("#input").val();
     	var f=true;
-    	if(input==null){
-    		alert("请输入查询信息！");
-    		f=false;
-    	}
-    	
-    	//输入不为空
-    	if(f){
-    		//发送ajax请求
-            $.ajax({
-            	url:path+"/findByInput.do",
-          	    type:"post",
-          	    data:{"input":input},
-          	    dataType:"json",
-        		success:function(result){
-        			if(result.state==7){//查询输入为空
-        				alert("输入查询信息为空");
-        			}
-        			//alert("查询成功");
-        			//让页面加载商品
-        			loadgoods(result);
-        		},
-        		error:function(){
-        			alert("查询失败!");
-        		}
-        	});
-    	}
+
+		//发送ajax请求
+        findGoods($("#page").val(),input);
+
     });
     	
       $("#slider").responsiveSlides({
@@ -75,23 +54,31 @@
     	});
       
       //alert(page);
-      $.ajax({
-    	  url:path+"/api/good/getAllGoods",
-    	  type:"get",
-    	  //data:{"page":page},//分页查询,默认设置每页显示8个商品
-    	  
-    	  dataType:"json",
-    	  success:function(result){
-    		 loadgoods(result);
-    	  },
-    	  error:function(){
-    		  alert("加载失败");
-    	  }
-      });
+        findGoods($("#page").val(),'');
       return false;
     });
     
-    
+    function findGoods(page,name) {
+        $.ajax({
+            url:path+"/api/good/getAllGoods?size=8&page="+(page-1)+"&name="+name,
+            type:"get",
+            //data:{"page":page},//分页查询,默认设置每页显示8个商品
+
+            dataType:"json",
+            success:function(result){
+            	// alert(result.length);
+                if(result.length == 0){
+                  return;
+                }
+				//能查的出来数据，才去加载商品
+                loadgoods(result);
+            },
+            error:function(){
+                alert("加载失败");
+            }
+        });
+		
+    }
     
     
     
@@ -100,7 +87,7 @@
     	//将点中的商品id绑定到cookie并跳转到商品详情页面
     	//绑定id是为了使用户看到商品详情页面时,是自己选中
     	//的商品详情
-    	alert("详情id:"+id);
+    	// alert("详情id:"+id);
     	addCookie("good_id",id,1);
     	window.location.href="single.html";
     }

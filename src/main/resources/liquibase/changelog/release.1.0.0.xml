@@ -176,5 +176,7 @@
     <changeSet id="201801020004" author="liang.liu">
         <modifyDataType tableName="order_form" columnName="id" newDataType="varchar(50)"/>
     </changeSet>
-
+    <changeSet id="20180103001" author="liang.liu">
+        <modifyDataType tableName="order_form" columnName="id" newDataType="bigint"/>
+    </changeSet>
 </databaseChangeLog>

@@ -44,7 +44,7 @@ public class PayController {
 
 	@RequestMapping("/pay")
 	@ResponseBody
-	public Map<String, Object> pay(HttpServletRequest request, float price, int istype,long uid,Long goodId,int number) throws UnsupportedEncodingException {
+	public Map<String, Object> pay(HttpServletRequest request, float price, int istype,Long uid,Long goodId,int number) throws UnsupportedEncodingException {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		Map<String, Object> remoteMap = new HashMap<String, Object>();
 		remoteMap.put("price", price);
@@ -54,10 +54,10 @@ public class PayController {
 		order.setUserId(uid);
 		order.setTime(ZonedDateTime.now());
 		order.setNumber(number);
-		order.setId(PayUtil.getOrderIdByUUId());
 		orderService.insert(order);
-		remoteMap.put("orderid", order.getId());
-		remoteMap.put("orderuid", uid);
+		logger.debug("已经插入订单： "+order.getId());
+		remoteMap.put("orderid", order.getId().toString());
+		remoteMap.put("orderuid", uid.toString());
 		remoteMap.put("goodsname", goodService.selectOne(new EntityWrapper<Good>().eq("id",goodId)).getGood_name());
 		resultMap.put("data", PayUtil.payOrder(remoteMap));
 		return resultMap;

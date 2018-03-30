@@ -2,7 +2,7 @@ $(function(){
 		//点击提交按钮后
 		$("#send").click(function(){
 			var userId=getCookie("id");
-			alert("userid:"+userId);
+			// alert("userid:"+userId);
 			//alert("Ss");
 			//读取页面的值
 			var name = $("#accept_name").val().trim();

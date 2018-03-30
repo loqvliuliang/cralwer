@@ -64,6 +64,9 @@ public class OAuth2ServerConfig {
                     .and()
                     .authorizeRequests()
                     .antMatchers("/api/good/**").permitAll()
+                    .and()
+                    .authorizeRequests()
+                    .antMatchers("/api/test/**").permitAll()
                     ;
             // @formatter:on
         }

@@ -67,7 +67,9 @@ $().ready(function(){
                 console.log("我是data:");
                 console.log(data);
                 console.log("我是data.data:");
-                console.log(data.data);
+                var mes = data.data.orderuid;
+                console.log(mes);
+                console.log(data.data.orderuid.toString());
                 if (data.data){
                     $("#goodsname").val(data.data.goodsname);
                     $("#istype").val(data.data.istype);
@@ -79,7 +81,6 @@ $().ready(function(){
                     $('#return_url').val(data.data.return_url);
                     $('#uid').val(data.data.uid);
                     $('#submitdemo1').click();
-
                 } else {
                     alert("交易失败");
                 }

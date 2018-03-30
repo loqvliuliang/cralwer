@@ -7,6 +7,7 @@ import com.cloudhelios.atlantis.service.BaseService;
 import com.example.demo.domain.Good;
 import com.example.demo.mapper.GoodMapper;
 import com.example.demo.utils.ShopUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Service;
 
@@ -25,9 +26,14 @@ public class GoodService extends BaseService<GoodMapper,Good> {
         this.goodMapper = goodMapper;
     }
 
-    public Page<Good> loadGoods(Page page){
+    public Page<Good> loadGoods(String name,Page page){
         page.getRecords();
-        List<Good> list = goodMapper.selectPage(page,new EntityWrapper<Good>().orderBy("good_price"));
+        List<Good> list = goodMapper.selectPage(
+                page,
+                new EntityWrapper<Good>()
+                        .like(StringUtils.isNotEmpty(name),"good_name",name)
+                        .orderBy("good_price")
+        );
         if (CollectionUtils.isNotEmpty(list)){
             page.setRecords(list);
         }

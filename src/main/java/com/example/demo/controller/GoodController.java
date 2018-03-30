@@ -32,9 +32,9 @@ public class GoodController {
 
 
     @GetMapping("/getAllGoods")
-    public ResponseEntity<List<Good>> getAllGoods(Pageable pageable){
+    public ResponseEntity<List<Good>> getAllGoods(@RequestParam(value = "name",required = false) String name , Pageable pageable){
         Page page = MyBatisPageUtil.getPage(pageable);
-        Page<Good> result = goodService.loadGoods(page);
+        Page<Good> result = goodService.loadGoods(name,page);
         HttpHeaders headers = new HttpHeaders();
         headers.add("X-Total-Count", "" + result.getTotal());
         headers.add("Link","/api/good/getAllGoods");

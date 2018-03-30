@@ -35,6 +35,8 @@ spring:
             required: true
   thymeleaf:
     cache: false
+  application:
+    name: crawler
 
 
 mybatis-plus:
@@ -65,3 +67,7 @@ attachment:
 #    path: D:/budgetFile/
     prefix: http://119.23.244.172:80
     path: /image/
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6660/eureka/

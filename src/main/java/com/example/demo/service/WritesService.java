@@ -34,9 +34,9 @@ public class WritesService extends BaseService<WritesMapper,Writes>{
         writes.setWrite_id(ShopUtil.createId());
         writes.setCreateTime(ZonedDateTime.now());
         int i = writesMapper.insert(writes);
-        Good good = goodService.selectList(new EntityWrapper<Good>().eq("good_id",writes.getGood_id())).get(0);
+        Good good = goodService.selectList(new EntityWrapper<Good>().eq("id",writes.getGood_id())).get(0);
         good.setGood_com(good.getGood_com()+1);
-        goodService.update(good,new EntityWrapper<Good>().eq("good_id",writes.getGood_id()));
+        goodService.update(good,new EntityWrapper<Good>().eq("id",writes.getGood_id()));
         return i!=0;
     }
 
