@@ -209,6 +209,68 @@
 			<artifactId>spring-cloud-starter-feign</artifactId>
 		</dependency>
 
+
+
+
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>fastjson</artifactId>
+			<version>1.2.16</version>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>3.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpcore</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.3</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.2.1</version>
+		</dependency>
+
+		<!--<dependency>-->
+		<!--<groupId>com.shunicom</groupId>-->
+		<!--<artifactId>shunicom-common</artifactId>-->
+		<!--</dependency>-->
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.17</version>
+		</dependency>
+
+
+		<!-- 添加 spring-data-elasticsearch的依赖 -->
+		<!--<dependency>-->
+			<!--<groupId> org.springframework.boot </groupId>-->
+			<!--<artifactId> spring-boot-starter-data-elasticsearch </artifactId>-->
+		<!--</dependency>-->
+
+		<!--从自己的maven私服上面下载-->
+		<dependency>
+			<groupId>cn.iamcrawler</groupId>
+			<artifactId>crawler</artifactId>
+			<version>1.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<dependencyManagement>
@@ -241,5 +303,34 @@
 		</plugins>
 	</build>
 
+	<!--配置maven私服-->
+	<repositories>
+		<repository>
+			<id>nexus</id>
+			<name>nexus</name>
+			<url>http://www.iamcrawler.cn:8081/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<!--配置maven私服-->
+	<pluginRepositories>
+		<pluginRepository>
+			<id>nexus</id>
+			<name>nexus</name>
+			<url>http://www.iamcrawler.cn:8081/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
 
 </project>

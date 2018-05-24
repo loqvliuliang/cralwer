@@ -1,0 +1,75 @@
+server:
+  port: 4000
+
+liquibase:
+  change-log: classpath:liquibase/master.xml
+
+spring:
+  datasource:
+    url: jdbc:mysql://www.iamcrawler.cn:3306/crawler?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true
+    username: root
+    password: 123456
+    driver-class-name:  com.mysql.jdbc.Driver
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+    date-format: com.fasterxml.jackson.databind.util.ISO8601DateFormat
+  redis:
+    host: localhost
+    port: 6379
+#    password: 123456
+    pool:
+      max-active: 8
+      min-idle: 0
+      max-idle: 8
+      max-wait: -1
+
+  mail:
+    host: smtp.qq.com
+    username: 939513800@qq.com
+    password: krmlvknwpjlvbfbj
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  thymeleaf:
+    cache: false
+  application:
+    name: crawler
+
+
+mybatis-plus:
+  mapper-locations: com/example/demo/mapper/*Mapper.xml
+  type-aliases-package: com.example.demo.domain
+  type-handlers-package: com.example.demo.mapper.typehandler
+  global-config:
+    refresh-mapper: true
+
+mapper:
+  not-empty: false
+
+security:
+  oauth2:
+    resource:
+      filter-order: 3
+
+logging:
+  file: ./logfile/my.log
+  level:
+    com:
+      example:
+        demo: debug
+
+attachment:
+  good:
+#    path: /image/
+#    path: D:/budgetFile/
+    prefix: http://119.23.244.172:80
+    path: /image/
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6660/eureka/

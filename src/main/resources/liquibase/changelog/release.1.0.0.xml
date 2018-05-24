@@ -179,4 +179,43 @@
     <changeSet id="20180103001" author="liang.liu">
         <modifyDataType tableName="order_form" columnName="id" newDataType="bigint"/>
     </changeSet>
+
+    <changeSet id="201805231729001" author="liang.liu">
+        <createTable tableName="blog" remarks="博客日志">
+            <column name="id" type="bigint" remarks="博客id">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="title" type="varchar(200)" remarks="博客标题"/>
+            <column name="tag" type="varchar(200)" remarks="博客标签"/>
+            <column name="summary" type="text" remarks="博客内容"/>
+            <column name="category" type="varchar(50)" remarks="分类代码"/>
+            <column name="createTime" type="timestamp" defaultValue="${now}" remarks="创建博客时间"/>
+            <column name="viewTimes" type="int" remarks="查看次数"/>
+            <column name="createdBy" type="Long" remarks="创建人">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="201805231832001" author="liang.liu">
+        <modifyDataType tableName="blog" columnName="createdBy" newDataType="bigint"/>
+    </changeSet>
+    <changeSet id="201805232140001" author="liang.liu">
+        <createTable tableName="sys_value" remarks="值列表大类">
+            <column name="id" type="bigint" remarks="id">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="type" type="varchar(30)" remarks="值列表大类类型"/>
+        </createTable>
+        <createTable tableName="sys_value_item" remarks="值列表小类">
+            <column name="id" type="bigint" remarks="值列表小类id">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="sys_value_id" type="bigint" remarks="值列表大类id"/>
+            <column name="code" type="varchar(30)" remarks="值列表小类code"/>
+            <column name="name" type="varchar(30)" remarks="值列表小类name"></column>
+        </createTable>
+    </changeSet>
+    <changeSet id="201805240933001" author="liang.liu">
+        <sqlFile path="classpath:liquibase/data/release1.0.0/initSysValue/init_20180524.sql" encoding="UTF-8"/>
+    </changeSet>
 </databaseChangeLog>
