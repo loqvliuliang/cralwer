@@ -27,7 +27,9 @@ spring:
   mail:
     host: smtp.qq.com
     username: 939513800@qq.com
-    password: krmlvknwpjlvbfbj
+#    password: krmlvknwpjlvbfbj
+#    password:
+
     properties:
       mail:
         smtp:
@@ -39,6 +41,14 @@ spring:
     cache: false
   application:
     name: crawler
+  rabbitmq:
+    host: www.iamcrawler.cn
+    port: 5672
+    username: liuliang
+    password: liuliang
+#    publisher-confirms: true
+#    virtual-host: /
+#    addresses: www.iamcrawler.cn:15672
 
 
 mybatis-plus:
