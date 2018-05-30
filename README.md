@@ -1,6 +1,6 @@
 # crawler
 (作者：刘亮)
-效果地址（http://www.hand-liang.top:2222 ）
+效果地址（http://www.iamcrawler.cn:4000 ）
 
 SpringBoot上面集成各种技术
 
@@ -54,5 +54,52 @@ SpringBoot上面集成各种技术
         };
 
     }
- 
+ 4.maven私服
+  私服引用的jar主要封装了一些常用的注解。自定义注解，然后生成jar包，这里不做解释，主要说明一下怎样引入自己私服上面的jar包
+   将jar包上传到私服nexus（不会的自行百度）
+   在pom.xml中引入如下代码
+   
+   
+   
+   <!--配置maven私服-->
+	<repositories>
+		<repository>
+			<id>nexus</id>
+			<name>nexus</name>
+			<url>http://www.iamcrawler.cn:8081/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	<!--配置maven私服-->
+	<pluginRepositories>
+		<pluginRepository>
+			<id>nexus</id>
+			<name>nexus</name>
+			<url>http://www.iamcrawler.cn:8081/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
 	
+
+
+然后添加依赖：
+	
+	
+	
+	
+	...
+	<dependency>
+		<groupId>cn.iamcrawler</groupId>
+		<artifactId>crawler</artifactId>
+		<version>1.0</version>
+	</dependency>
