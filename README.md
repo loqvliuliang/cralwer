@@ -10,7 +10,7 @@ SpringBoot上面集成各种技术
       
   2.本项目都使用到了哪些技术?
   
-  	截止2018-01-03日本项目集成了
+  	截止目前项目集成了
 	SpringSecurity(用户登陆注册),
 	Oauth2(密码模式，客户端模式获取token),
 	mybatisPlus,liquibase,
