@@ -218,4 +218,9 @@
     <changeSet id="201805240933001" author="liang.liu">
         <sqlFile path="classpath:liquibase/data/release1.0.0/initSysValue/init_20180524.sql" encoding="UTF-8"/>
     </changeSet>
+    <changeSet id="201806041700001" author="liang.liu">
+        <addColumn tableName="blog">
+            <column name="markdownContent" type="text" remarks="文章内容"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>

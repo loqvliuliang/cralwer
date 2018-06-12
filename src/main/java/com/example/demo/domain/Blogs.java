@@ -2,6 +2,8 @@ package com.example.demo.domain;
 
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,7 +22,7 @@ import java.util.List;
 @Builder
 @TableName("blog")
 public class Blogs {
-
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
 
     private String title;
@@ -38,7 +40,9 @@ public class Blogs {
 
     private String category;
 
-
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long createdBy;
+
+    private String markdownContent;
 
 }

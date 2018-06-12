@@ -83,3 +83,12 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:6660/eureka/
+
+
+elasticsearch:
+  host: www.iamcrawler.cn
+  tcp-port: 9301
+  user: liuliang
+  password: liuliang
+  cluster-name : elastictest
+  enable: true

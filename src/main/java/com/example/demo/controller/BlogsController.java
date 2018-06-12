@@ -85,4 +85,26 @@ public class BlogsController {
         return aBoolean;
     }
 
+
+    /**
+     * 新增单个博客
+     * @param blogs
+     * @return
+     */
+    @PostMapping("/insert/blog")
+    public Boolean insertBlog(@RequestBody Blogs blogs){
+        Boolean aBoolean = blogService.insertBlog(blogs);
+        return aBoolean;
+    }
+
+    /**
+     * 查询单个博客
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    public Blogs getBlogById(@PathVariable Long id){
+        return blogService.getBlogById(id);
+    }
+
 }
