@@ -7,6 +7,7 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by 刘亮 on 2017/11/12.
@@ -26,11 +27,13 @@ public class RedisService {
     ValueOperations<Object, Object> valOpsObj;
 
     public String getStr(String key) {
-        return valOpsStr.get(key);
+        return stringRedisTemplate.opsForValue().get(key);//获取对应key的value
+//        return valOpsStr.get(key);
     }
 
     public void setStr(String key, String val) {
-        valOpsStr.set(key, val);
+        stringRedisTemplate.opsForValue().set(key,val,1800, TimeUnit.SECONDS);
+//        valOpsStr.set(key, val);
     }
 
     public void del(String key) {
