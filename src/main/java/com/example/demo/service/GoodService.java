@@ -6,9 +6,8 @@ import com.baomidou.mybatisplus.toolkit.CollectionUtils;
 import com.cloudhelios.atlantis.service.BaseService;
 import com.example.demo.domain.Good;
 import com.example.demo.mapper.GoodMapper;
-import com.example.demo.utils.ShopUtil;
+import com.example.demo.mapper.ShopCarMapper;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,9 +20,11 @@ import java.util.List;
 public class GoodService extends BaseService<GoodMapper,Good> {
 
     private final GoodMapper goodMapper ;
+    private final ShopCarMapper shopCarMapper;
 
-    public GoodService(GoodMapper goodMapper) {
+    public GoodService(GoodMapper goodMapper, ShopCarMapper shopCarMapper) {
         this.goodMapper = goodMapper;
+        this.shopCarMapper = shopCarMapper;
     }
 
     public Page<Good> loadGoods(String name,Page page){
@@ -37,6 +38,7 @@ public class GoodService extends BaseService<GoodMapper,Good> {
         if (CollectionUtils.isNotEmpty(list)){
             page.setRecords(list);
         }
+        shopCarMapper.selectShopCarById("5576fa8c08494576990de729406ebb31");
         return page ;
     }
 

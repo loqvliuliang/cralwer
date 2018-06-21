@@ -49,8 +49,8 @@ spring:
 #          data: ./elasticsearch/data
 
 
-mybatis-plus:
-  mapper-locations: com/example/demo/mapper/*Mapper.xml
+mybatis:
+  mapper-locations: classpath:com/example/demo/mapper/xml/*Mapper.xml
   type-aliases-package: com.example.demo.domain
   type-handlers-package: com.example.demo.mapper.typehandler
   global-config:

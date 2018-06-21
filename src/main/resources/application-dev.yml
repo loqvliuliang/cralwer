@@ -51,8 +51,8 @@ spring:
 #    addresses: www.iamcrawler.cn:15672
 
 
-mybatis-plus:
-  mapper-locations: com/example/demo/mapper/*Mapper.xml
+mybatis:
+  mapper-locations: com/example/demo/mapper/xml/*Mapper.xml
   type-aliases-package: com.example.demo.domain
   type-handlers-package: com.example.demo.mapper.typehandler
   global-config:

@@ -9,6 +9,6 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface ShopCarMapper extends BaseMapper<ShopCar> {
 
-    ShopCar selectShopCarById(@Param("id") Long id);
+    Integer selectShopCarById(@Param("id") String id);
     Integer deleteShopCarById(@Param("id") String id);
 }
