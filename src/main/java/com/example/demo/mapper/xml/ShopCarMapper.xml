@@ -3,7 +3,7 @@
 <mapper namespace="com.example.demo.mapper.ShopCarMapper">
 
 	<select id="selectShopCarById" parameterType="java.lang.String" resultType="java.lang.Integer">
-		delete from shop_car_0614 where shopcar_id = #{id}
+		delete from shopcar where shopcar_id = #{id}
 	</select>
 
 	<select id="deleteShopCarById" parameterType="java.lang.String" resultType="java.lang.Integer">

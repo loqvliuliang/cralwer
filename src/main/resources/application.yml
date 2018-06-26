@@ -81,3 +81,4 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:6660/eureka/
+#      defaultZone: http://192.168.1.70:8300/eureka/

@@ -1,6 +1,6 @@
 package com.example.demo.config;
 
-import com.example.demo.interceptor.ApiInterceptor;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;

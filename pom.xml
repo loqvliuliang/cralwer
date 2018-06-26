@@ -276,11 +276,32 @@
 			<!--<version>5.5.2</version>-->
 		<!--</dependency>-->
 
-		<dependency>
-			<groupId>org.elasticsearch</groupId>
-			<artifactId>elasticsearch</artifactId>
-			<version>2.4.4</version>
+		<!--<dependency>-->
+			<!--<groupId>org.elasticsearch</groupId>-->
+			<!--<artifactId>elasticsearch</artifactId>-->
+			<!--<version>2.4.4</version>-->
+		<!--</dependency>-->
+		<!--<dependency>-->
+			<!--<groupId>org.elasticsearch</groupId>-->
+			<!--<artifactId>elasticsearch</artifactId>-->
+			<!--<version>5.5.3</version>-->
+		<!--</dependency>-->
+
+		<!--<dependency>-->
+			<!--<groupId>org.elasticsearch.client</groupId>-->
+			<!--<artifactId>x-pack-transport</artifactId>-->
+			<!--<version>5.5.3</version>-->
+		<!--</dependency>-->
+
+		<dependency> <groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<version>1.5.6.RELEASE</version>
 		</dependency>
+		<!--<dependency>-->
+			<!--<groupId>org.springframework.boot</groupId>-->
+			<!--<artifactId>spring-boot-starter-data-elasticsearch</artifactId>-->
+			<!--<version>1.5.6.RELEASE</version>-->
+		<!--</dependency>-->
 
 		<!--从自己的maven私服上面下载-->
 		<dependency>

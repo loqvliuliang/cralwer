@@ -49,6 +49,14 @@ spring:
 #    publisher-confirms: true
 #    virtual-host: /
 #    addresses: www.iamcrawler.cn:15672
+#  data:
+#    elasticsearch:
+#      repositories:
+#        enabled: true
+#      cluster-nodes: www.iamcrawler.cn:9301
+#      cluster-name: elastictest
+#      user: liuliang
+#      password: liuliang
 
 
 mybatis:
@@ -85,10 +93,10 @@ eureka:
       defaultZone: http://localhost:6660/eureka/
 
 
-elasticsearch:
-  host: www.iamcrawler.cn
-  tcp-port: 9301
-  user: liuliang
-  password: liuliang
-  cluster-name : elastictest
-  enable: true
+#elasticsearch:
+#  host: www.iamcrawler.cn
+#  tcp-port: 9301
+#  user: liuliang
+#  password: liuliang
+#  cluster-name : elastictest
+#  enable: true
